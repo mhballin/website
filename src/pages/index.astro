@@ -11,49 +11,51 @@ const last_posts = posts.slice(0, 3);
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <div class="text-xl py-1">Hello 👋</div>
+    <div class="text-5xl font-bold">I'm Michael Ballin</div>
+    <div class="text-3xl py-3 font-bold">Product Developer | Composites Engineer</div>
     <div class="py-2">
       <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
+        I combine <b>technical innovation</b> with business impact. As co-founder of Blueprint, I develop advanced composite products—
+        from 3D-printed surfboard cores to optimized manufacturing systems. Environmental scientist turned entrepreneur, 
+        I bring a unique perspective to solving complex product development challenges across the full lifecycle: 
+        <b>design, materials, manufacturing, and cost optimization</b>.
       </text>
     </div>
     <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
+      <a class="btn" href="mailto:your.email@example.com" target="_blank">Let's Connect</a>
+      <a href="/cv" class="btn btn-outline ml-5">
+        View Resume
       </a>
     </div>
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-2">Featured Work</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
+    title="3D-Printed Surfboard Core Development"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    desc="Engineered innovative 3D-printed core system for composite surfboards. Optimized material selection and manufacturing process, reducing production costs by 30% while improving structural performance."
+    url="/projects"
+    badge="Blueprint"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
+    title="Composite Layup Process Optimization"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="Developed and implemented quality management systems for fiberglass and epoxy composite manufacturing. Achieved 95% first-pass quality rate through process documentation and operator training programs."
+    url="/projects"
+    badge="Manufacturing"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 3"
+    title="CAD-Driven Product Design Systems"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    desc="Created parametric design workflows using Rhino/Grasshopper for rapid prototyping and design iteration. Reduced design-to-prototype cycle time from weeks to days."
+    url="/projects"
+    badge="Technical"
   />
 
   <div>
