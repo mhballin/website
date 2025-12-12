@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
+import ImageModal from "../components/ImageModal.astro";
+import { projects } from "../data/projects";
+---
+
+<BaseLayout title="Work" sideBarActiveItemID="work">
+  <ImageModal />
+
+  <div class="pb-8">
+    <div class="text-3xl w-full font-bold mb-2">Work & Projects</div>
+    <div class="text-lg text-gray-600 mb-5">A visual showcase of 3D-printed designs and product development work.</div>
+  </div>
+
+  <ProjectGrid projects={projects} />
+</BaseLayout>

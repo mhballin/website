@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  projects: any[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
+  {
+    projects.map((project) => (
+      <a
+        href={`/projects/${project.id}`}
+        class="group relative overflow-hidden rounded-lg aspect-square cursor-pointer"
+      >
+        <Image
+          src={project.heroImage}
+          width={400}
+          height={400}
+          format="webp"
+          alt={project.title}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-end p-4">
+          <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <h3 class="font-bold text-lg">{project.title}</h3>
+            <p class="text-sm text-gray-200">{project.tags.join(" • ")}</p>
+          </div>
+        </div>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .projects-grid {
+    /* Responsive grid with cover-mode image cropping */
+  }
+</style>

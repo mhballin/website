@@ -1,0 +1,94 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  projects: any[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="highlights-carousel">
+  <div
+    id="carousel-container"
+    class="flex gap-4 py-3 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+    style="margin-left: calc(var(--prose-margin, 0) * -1); padding-left: var(--prose-margin, 0); width: 100vw; max-width: 100%;"
+  >
+    {
+      projects.map((project) => (
+        <a
+          href={`/projects/${project.id}`}
+          class="flex-shrink-0 w-80 h-80 min-w-80 min-h-80 snap-start rounded-lg overflow-hidden group cursor-pointer"
+        >
+          <div class="relative w-full h-full">
+            <Image
+              src={project.heroImage}
+              width={320}
+              height={320}
+              format="webp"
+              alt={project.title}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <div class="text-white">
+                <h3 class="font-bold text-lg">{project.title}</h3>
+                <p class="text-sm text-gray-300">{project.tags.slice(0, 2).join(" • ")}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById("carousel-container");
+
+  if (container) {
+    let isScrolling = false;
+
+    // Convert vertical wheel scroll to horizontal scroll
+    container.addEventListener(
+      "wheel",
+      (e: WheelEvent) => {
+        if (isScrolling) return;
+
+        // Only intercept vertical scroll
+        if (e.deltaX !== 0) {
+          isScrolling = true;
+          setTimeout(() => (isScrolling = false), 50);
+          return;
+        }
+
+        isScrolling = true;
+        container!.scrollBy({
+          left: e.deltaY,
+          behavior: "smooth",
+        });
+        e.preventDefault();
+        setTimeout(() => (isScrolling = false), 50);
+      },
+      { passive: false }
+    );
+  }
+</script>
+
+<style>
+  .highlights-carousel ::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .highlights-carousel ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .highlights-carousel ::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
+
+  .highlights-carousel ::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+</style>

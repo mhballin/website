@@ -1,0 +1,171 @@
+---
+// ImageModal.astro - Client-side modal component for viewing full-size project images
+---
+
+<div id="image-modal" class="fixed inset-0 z-50 hidden">
+  <!-- Backdrop -->
+  <div
+    id="modal-backdrop"
+    class="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer"
+  ></div>
+
+  <!-- Image container -->
+  <div class="absolute inset-0 flex items-center justify-center p-4">
+    <button
+      id="modal-close"
+      class="absolute top-6 right-6 text-white hover:text-gray-300 z-10 bg-black/50 p-2 rounded-full hover:bg-black/70 transition-colors"
+      aria-label="Close modal"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Image -->
+    <img
+      id="modal-image"
+      src=""
+      alt="Project image"
+      class="max-w-4xl max-h-[90vh] object-contain"
+    />
+
+    <!-- Navigation buttons -->
+    <button
+      id="modal-prev"
+      class="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 hover:scale-110 transition-all bg-black/50 p-3 rounded-full hover:bg-black/70"
+      aria-label="Previous image"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <button
+      id="modal-next"
+      class="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 hover:scale-110 transition-all bg-black/50 p-3 rounded-full hover:bg-black/70"
+      aria-label="Next image"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+    <!-- Image counter -->
+    <div
+      id="modal-counter"
+      class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full text-sm"
+    >
+      <span id="modal-current">1</span> / <span id="modal-total">1</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("image-modal");
+  const modalImage = document.getElementById("modal-image");
+  const backdrop = document.getElementById("modal-backdrop");
+  const closeBtn = document.getElementById("modal-close");
+  const prevBtn = document.getElementById("modal-prev");
+  const nextBtn = document.getElementById("modal-next");
+  const currentSpan = document.getElementById("modal-current");
+  const totalSpan = document.getElementById("modal-total");
+
+  let currentImages: string[] = [];
+  let currentImageIndex = 0;
+
+  // Close modal handlers
+  function closeModal() {
+    modal?.classList.add("hidden");
+    currentImages = [];
+    currentImageIndex = 0;
+  }
+
+  backdrop?.addEventListener("click", closeModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  // Navigation handlers
+  function updateImage() {
+    if (modalImage) {
+      modalImage.src = currentImages[currentImageIndex];
+      if (currentSpan && totalSpan) {
+        currentSpan.textContent = String(currentImageIndex + 1);
+        totalSpan.textContent = String(currentImages.length);
+      }
+    }
+  }
+
+  prevBtn?.addEventListener("click", () => {
+    currentImageIndex =
+      (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+    updateImage();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+    updateImage();
+  });
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (modal?.classList.contains("hidden")) return;
+
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft") prevBtn?.click();
+    if (e.key === "ArrowRight") nextBtn?.click();
+  });
+
+  // Global image click handler
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+
+    // Check if clicked element is an image in a project gallery
+    if (
+      target.tagName === "IMG" &&
+      target.classList.contains("project-gallery-image")
+    ) {
+      const images = (target as any).dataset.images?.split(",") || [
+        target.getAttribute("src"),
+      ];
+      currentImages = images;
+      currentImageIndex = parseInt((target as any).dataset.index || "0");
+
+      modal?.classList.remove("hidden");
+      updateImage();
+    }
+  });
+
+  // Expose function for opening modal with specific images
+  (window as any).openImageModal = (images: string[], index: number = 0) => {
+    currentImages = images;
+    currentImageIndex = index;
+    modal?.classList.remove("hidden");
+    updateImage();
+  };
+</script>
