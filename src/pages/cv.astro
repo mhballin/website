@@ -5,14 +5,35 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
+    <div class="flex items-start justify-between flex-wrap gap-4">
+      <div>
+        <div class="text-3xl w-full font-bold mb-3">Michael Ballin</div>
+        <div class="text-sm text-gray-600 flex flex-wrap gap-4">
+          <a href="mailto:michaelhgballin@gmail.com" class="hover:text-primary">michaelhgballin@gmail.com</a>
+        </div>
+      </div>
+      <a 
+        href="/Michael-Ballin-Resume.pdf" 
+        download 
+        class="btn btn-primary btn-sm flex items-center gap-2"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+
+  <div class="mb-5">    <div class="text-3xl w-full font-bold">Profile</div>
   </div>
 
   <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Product designer, engineer, and entrepreneur specializing in sustainable innovation. 
+    Co-founded a startup converting recycled medical-waste plastic into high-performance composite products—developing 70+ 
+    designs that achieved 65% weight reduction while maintaining structural integrity. Bring expertise in advanced composites, 
+    parametric design (Rhino/Grasshopper), and end-to-end operations from supply chain management to cross-functional team leadership. 
+    Passionate about proving environmental innovation and product excellence aren’t mutually exclusive.
   </div>
 
   <div class="mb-5">
@@ -21,72 +42,108 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <div class="time-line-container grid gap-4 mb-10">
     <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
+      title="Bachelor of Arts: Environmental Science, Minor: Art"
+      subtitle="August 2017 – May 2021 at Colby College, Waterville, Maine"
+    >
+      <ul class="list-disc ml-4 space-y-1">
+        <li>Campus Jobs: Student Photographer, Communications Department; Assistant, Athletic Training Room</li>
+        <li>Activities: Orientation Trip Leader; Colby Surf Club President</li>
+      </ul>
+    </TimeLineElement>
   </div>
 
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Experience</div>
   </div>
 
-  <div class="time-line-container mb-10">
+  <div class="time-line-container mb-10 grid gap-4">
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Co-Founder"
+      subtitle="Nov 2022 – Present at Blueprint Surf, Portland, Maine (Part-time May 2021 – Oct 2022)"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      <div class="space-y-3 ml-4">
+        <div>
+          <strong class="block mb-1">Product Design & Development</strong>
+          <ul class="list-disc ml-8 space-y-1">
+            <li>Enhanced and developed a parametric script (using Rhino/Grasshopper) to create optimized internal lattice structures</li>
+            <li>Led rapid prototyping and iteration cycles to develop multiple product lines</li>
+            <li>Translated customer testing feedback into structural design improvements</li>
+          </ul>
+        </div>
+        <div>
+          <strong class="block mb-1">Materials & Manufacturing</strong>
+          <ul class="list-disc ml-8 space-y-1">
+            <li>Developed lightweight sandwich composites by combining 3D-printed polymer cores with fiberglass and epoxy, improving strength-to-weight ratio</li>
+            <li>Optimized lay-up schedules, fiber orientations, and resin systems for durability and performance</li>
+            <li>Applied advanced composite manufacturing techniques to deliver lightweight, high-performing products tailored to real-world applications</li>
+          </ul>
+        </div>
+        <div>
+          <strong class="block mb-1">Business & Operations</strong>
+          <ul class="list-disc ml-8 space-y-1">
+            <li>Built partnerships with research institutes and universities, industry leaders, and suppliers to expand technical capabilities</li>
+            <li>Managed supply chains and sourced sustainable materials, balancing innovation with cost constraints</li>
+            <li>Directed several interns (MBA candidates at the Tuck School of Business and undergraduates at Colby College), coordinating project work and ensuring deliverables met company goals</li>
+          </ul>
+        </div>
+        <div>
+          <strong class="block mb-1">Marketing & Branding</strong>
+          <ul class="list-disc ml-8 space-y-1">
+            <li>Amassed 28,000+ social media followers through authentic brand building</li>
+            <li>Press & Media Coverage: Downeast Magazine, The Inertia, Portland Press Herald, Professional BoatBuilder Magazine, 3Dnatives, and Colby News</li>
+            <li>Built a uniquely identifiable brand backed by customer and partner testimonials</li>
+          </ul>
+        </div>
+      </div>
     </TimeLineElement>
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Environmental Scientist"
+      subtitle="June 2021 – Nov 2022 at St.Germain, Westbrook, Maine"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      <ul class="list-disc ml-8 space-y-1">
+        <li>Conducted Phase I & II environmental site assessments, including groundwater and soil sampling</li>
+        <li>Authored technical reports and regulatory submittals in compliance with Maine DEP and EPA standards</li>
+        <li>Collaborated with project managers, clients, and subcontractors to ensure compliance and timely project delivery</li>
+      </ul>
     </TimeLineElement>
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Senior Capstone Research"
+      subtitle="Fall 2021 at Colby College Environmental Science Department, Waterville, Maine"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      <ul class="list-disc ml-8 space-y-1">
+        <li>Studied lobster shell disease in the Damariscotta River, comparing temperature and salinity measurements to affected crustaceans</li>
+      </ul>
     </TimeLineElement>
   </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-  </ul>
 
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Skills</div>
   </div>
 
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-  </ul>
+  <div class="mb-10">
+    <div class="mb-4">
+      <h4 class="font-semibold mb-2">Software</h4>
+      <ul class="list-disc md:columns-2 columns-1 mx-6 gap-x-8">
+        <li>Rhino/Grasshopper</li>
+        <li>Fusion 360</li>
+        <li>Adobe Suite</li>
+        <li>Shape3Dx</li>
+        <li>Raspberry Pi</li>
+        <li>Squarespace</li>
+        <li>Wix</li>
+        <li>Google Suite</li>
+        <li>Microsoft Office Suite</li>
+        <li>Python (basic)</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-semibold mb-2">Manufacturing</h4>
+      <ul class="list-disc md:columns-2 columns-1 mx-6 gap-x-8">
+        <li>Additive</li>
+        <li>Foam</li>
+        <li>Fiberglass/Epoxy</li>
+        <li>Wood</li>
+      </ul>
+    </div>
+  </div>
 </BaseLayout>

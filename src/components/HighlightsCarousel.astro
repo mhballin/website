@@ -2,10 +2,11 @@
 import { Image } from "astro:assets";
 
 interface Props {
-  projects: any[];
+  projects: Project[];
 }
 
 const { projects } = Astro.props;
+import type { Project } from "../data/projects";
 ---
 
 <div class="highlights-carousel">
