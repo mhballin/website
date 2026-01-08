@@ -15,6 +15,14 @@ interface Props {
 }
 
 const { project } = Astro.props;
+
+// Generate image paths automatically based on naming convention
+const projectNumber = project.id.split('-')[1]; // Extract number from "project-1"
+const images = project.imageCount 
+  ? Array.from({ length: project.imageCount }, (_, i) => 
+      `/projects/${project.id}/project_${projectNumber}_${i + 1}.webp`
+    )
+  : [];
 ---
 
 <BaseLayout title={project.title} sideBarActiveItemID="work">
@@ -66,10 +74,10 @@ const { project } = Astro.props;
   )}
 
   <!-- All Images Gallery -->
-  {project.images.length > 1 && (
+  {images.length > 0 && (
     <div class="max-w-4xl mx-auto mb-16">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {project.images.slice(1).map((image, index) => {
+        {images.map((image, index) => {
           const isFullWidth = project.fullWidthImages?.includes(index);
           return (
             <div class={isFullWidth ? "md:col-span-2" : ""}>
@@ -78,7 +86,7 @@ const { project } = Astro.props;
                 width={1200}
                 height={800}
                 format="webp"
-                alt={`${project.title} - Image ${index + 2}`}
+                alt={`${project.title} - Image ${index + 1}`}
                 class="w-full rounded-lg shadow-lg"
               />
             </div>

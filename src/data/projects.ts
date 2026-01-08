@@ -4,7 +4,7 @@ export interface Project {
   description: string;
   featured: boolean;
   heroImage: string;
-  images: string[];
+  imageCount?: number;  // Number of additional images (project_y_1.webp, project_y_2.webp, etc.)
   
   // Optional storytelling fields
   overview?: string;
@@ -25,19 +25,8 @@ export const projects: Project[] = [
       Optimized material selection and manufacturing process, reducing production costs.
     `.trim(),
     featured: true,
-    heroImage: "/projects/project-1/Hero.webp",
-    images: [
-      "/projects/project-1/Hero.webp",
-      "/projects/project-1/3d_printed_core_1.webp",
-      "/projects/project-1/3d_printed_core_2.webp",
-      "/projects/project-1/3d_printed_core_3.webp",
-      "/projects/project-1/3d_printed_core_4.webp",
-      "/projects/project-1/3d_printed_core_5.webp",
-      "/projects/project-1/3d_printed_core_6.webp",
-      "/projects/project-1/3d_printed_core_7.webp",
-      "/projects/project-1/3d_printed_core_8.webp",
-      "/projects/project-1/3d_printed_core_9.webp",
-    ],
+    heroImage: "/projects/project-1/hero_1.webp",
+    imageCount: 9,
     year: "2021 - Present",
         overview: `
       The 3D‑printed surfboard started as an idea from my co‑founder, Luke, 
@@ -75,12 +64,7 @@ export const projects: Project[] = [
       Achieved 95% first-pass quality rate.
     `.trim(),
     featured: true,
-    heroImage: "/projects/project-2/hero.webp",
-    images: [
-      "/projects/project-2/hero.webp",
-      "/projects/project-2/detail-1.webp",
-      "/projects/project-2/detail-2.webp",
-    ],
+    heroImage: "/projects/project-2/hero_2.webp",
   },
   {
     id: "project-3",
@@ -90,42 +74,27 @@ export const projects: Project[] = [
       Reduced design-to-prototype cycle time from weeks to days.
     `.trim(),
     featured: false,
-    heroImage: "/projects/project-3/hero.webp",
-    images: [
-      "/projects/project-3/hero.webp",
-      "/projects/project-3/detail-1.webp",
-      "/projects/project-3/detail-2.webp",
-    ],
+    heroImage: "/projects/project-3/hero_3.webp",
   },
   {
     id: "project-4",
-    title: "Resin Cast Vent Plug",
+    title: "Advanced Material Testing",
     description: `
       Comprehensive material testing and analysis for composite performance validation. 
       Developed standardized testing protocols and documentation.
     `.trim(),
     featured: false,
-    heroImage: "/projects/project-4/hero.webp",
-    images: [
-      "/projects/project-4/hero.webp",
-      "/projects/project-4/detail-1.webp",
-      "/projects/project-4/detail-2.webp",
-    ],
+    heroImage: "/projects/project-4/hero_4.webp",
   },
   {
     id: "project-5",
-    title: "Pickelball Racket",
+    title: "Production Cost Optimization",
     description: `
       Analyzed and optimized manufacturing processes across multiple product lines. 
       Achieved 25% reduction in material waste and production costs.
     `.trim(),
     featured: false,
-    heroImage: "/projects/project-5/hero.webp",
-    images: [
-      "/projects/project-5/hero.webp",
-      "/projects/project-5/detail-1.webp",
-      "/projects/project-5/detail-2.webp",
-    ],
+    heroImage: "/projects/project-5/hero_5.webp",
   },
   {
     id: "project-6",
@@ -135,11 +104,6 @@ export const projects: Project[] = [
       Reduced tooling costs and improved production consistency.
     `.trim(),
     featured: false,
-    heroImage: "/projects/project-6/hero.webp",
-    images: [
-      "/projects/project-6/hero.webp",
-      "/projects/project-6/detail-1.webp",
-      "/projects/project-6/detail-2.webp",
-    ],
+    heroImage: "/projects/project-6/hero_6.webp",
   },
 ];
