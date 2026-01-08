@@ -82,14 +82,16 @@ const images = project.imageCount
           const isFullWidth = project.fullWidthImages?.includes(index);
           return (
             <div class={isFullWidth ? "md:col-span-2" : ""}>
-              <Image
-                src={image}
-                width={1200}
-                height={800}
-                format="webp"
-                alt={`${project.title} - Image ${index + 1}`}
-                class="w-full rounded-lg shadow-lg"
-              />
+              <div class="w-full max-h-[600px] overflow-hidden rounded-lg flex items-center justify-center">
+                <Image
+                  src={image}
+                  width={1200}
+                  height={800}
+                  format="webp"
+                  alt={`${project.title} - Image ${index + 1}`}
+                  class="w-full h-full object-contain"
+                />
+              </div>
             </div>
           );
         })}

@@ -26,7 +26,7 @@ export const projects: Project[] = [
     `.trim(),
     featured: true,
     heroImage: "/projects/project-1/hero_1.webp",
-    imageCount: 10,
+    imageCount: 11,
     year: "2021 - Present",
         overview: `
       The 3D‑printed surfboard started as an idea from my co‑founder, Luke, 
@@ -78,7 +78,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-4",
-    title: "Advanced Material Testing",
+    title: "Paddleboard Waterbottle Holder",
     description: `
       Comprehensive material testing and analysis for composite performance validation. 
       Developed standardized testing protocols and documentation.
@@ -88,7 +88,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-5",
-    title: "Production Cost Optimization",
+    title: "Cast Resin Vent Plug",
     description: `
       Analyzed and optimized manufacturing processes across multiple product lines. 
       Achieved 25% reduction in material waste and production costs.
@@ -98,7 +98,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-6",
-    title: "Paddleboard Waterbottle Holder",
+    title: "Pickelball Paddle",
     description: `
       Designed and built reusable mold systems for rapid product manufacturing. 
       Reduced tooling costs and improved production consistency.
