@@ -43,80 +43,41 @@ const { project } = Astro.props;
   </div>
 
   <!-- Hero Image -->
-  <div class="w-full -mx-6 lg:-mx-12 mb-16">
-    <div class="w-full aspect-[21/9] overflow-hidden bg-gray-100 rounded-xl">
-      <Image
-        src={project.heroImage}
-        width={1600}
-        height={686}
-        format="webp"
-        alt={project.title}
-        class="w-full h-full object-cover"
-      />
+  <div class="w-full mb-16">
+    <div class="max-w-5xl mx-auto">
+      <div class="w-full aspect-[21/9] overflow-hidden bg-gray-100 rounded-xl">
+        <Image
+          src={project.heroImage}
+          width={1600}
+          height={686}
+          format="webp"
+          alt={project.title}
+          class="w-full h-full object-cover"
+        />
+      </div>
     </div>
   </div>
 
-  <!-- Challenge Section -->
-  {project.challenge && (
-    <div class="max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl font-bold mb-4">The Challenge</h2>
-      <p class="text-lg leading-relaxed text-gray-700">{project.challenge}</p>
-    </div>
-  )}
-
-  <!-- First Detail Image (if available) -->
-  {project.images[1] && (
-    <div class="w-full mb-16">
-      <div class="max-w-4xl mx-auto">
-        <Image
-          src={project.images[1]}
-          width={1200}
-          height={800}
-          format="webp"
-          alt={`${project.title} detail`}
-          class="w-full rounded-lg shadow-lg"
-        />
-      </div>
-    </div>
-  )}
-
-  <!-- Solution Section -->
-  {project.solution && (
-    <div class="max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl font-bold mb-4">The Solution</h2>
-      <p class="text-lg leading-relaxed text-gray-700">{project.solution}</p>
-    </div>
-  )}
-
-  <!-- Second Detail Image (if available) -->
-  {project.images[2] && (
-    <div class="w-full mb-16">
-      <div class="max-w-4xl mx-auto">
-        <Image
-          src={project.images[2]}
-          width={1200}
-          height={800}
-          format="webp"
-          alt={`${project.title} detail`}
-          class="w-full rounded-lg shadow-lg"
-        />
-      </div>
-    </div>
-  )}
-
-  <!-- Additional Images (if more than 3) -->
-  {project.images.length > 3 && (
+  <!-- Main Content Paragraph -->
+  {project.content && (
     <div class="max-w-4xl mx-auto mb-16">
+      <p class="text-lg leading-relaxed text-gray-700">{project.content}</p>
+    </div>
+  )}
+
+  <!-- All Images Gallery -->
+  {project.images.length > 1 && (
+    <div class="max-w-5xl mx-auto mb-16">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {project.images.slice(3).map((image, index) => (
+        {project.images.slice(1).map((image, index) => (
           <div class="w-full">
             <Image
               src={image}
-              width={800}
-              height={600}
+              width={1200}
+              height={800}
               format="webp"
-              alt={`${project.title} detail ${index + 4}`}
-              class="w-full rounded-lg shadow-md"
+              alt={`${project.title} - Image ${index + 2}`}
+              class="w-full rounded-lg shadow-lg"
             />
           </div>
         ))}
@@ -124,27 +85,34 @@ const { project } = Astro.props;
     </div>
   )}
 
-  <!-- Results Section -->
-  {project.results && project.results.length > 0 && (
-    <div class="max-w-3xl mx-auto mb-16">
+  <!-- Closing Section -->
+  {(project.closingText || (project.results && project.results.length > 0)) && (
+    <div class="max-w-4xl mx-auto mb-16">
       <div class="bg-base-200 rounded-2xl p-8">
         <h2 class="text-3xl font-bold mb-6">Results & Impact</h2>
-        <ul class="space-y-3">
-          {project.results.map((result) => (
-            <li class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span class="text-lg text-gray-700">{result}</span>
-            </li>
-          ))}
-        </ul>
+        
+        {project.closingText && (
+          <p class="text-lg leading-relaxed text-gray-700 mb-6">{project.closingText}</p>
+        )}
+        
+        {project.results && project.results.length > 0 && (
+          <ul class="space-y-3">
+            {project.results.map((result) => (
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="text-lg text-gray-700">{result}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   )}
 
   <!-- Navigation to other projects -->
-  <div class="max-w-3xl mx-auto mt-20 pt-8 border-t border-gray-200">
+  <div class="max-w-4xl mx-auto mt-20 pt-8 border-t border-gray-200">
     <a href="/work" class="btn btn-outline">
       ← View All Projects
     </a>

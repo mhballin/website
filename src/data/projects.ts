@@ -9,8 +9,8 @@ export interface Project {
   
   // Optional storytelling fields
   overview?: string;
-  challenge?: string;
-  solution?: string;
+  content?: string;  // Main paragraph after hero image
+  closingText?: string;  // Paragraph before results
   results?: string[];
   year?: string;
   role?: string;
@@ -32,8 +32,8 @@ export const projects: Project[] = [
     tags: ["3D Printing", "Composites", "Product Design"],
     year: "2021 - Present",
     overview: "Traditional surfboard cores are labor-intensive and expensive to manufacture. I developed a 3D-printed core system that revolutionizes the production process while maintaining the performance characteristics surfers demand.",
-    challenge: "Surfboard manufacturing relies on costly, time-consuming hand-shaping or CNC machining. The challenge was to create a lightweight, structurally sound core that could be 3D printed economically without compromising board performance.",
-    solution: "Designed a parametric lattice structure optimized for additive manufacturing. Selected materials that balance strength-to-weight ratio with printability. Developed a modular design system that allows customization while maintaining manufacturing efficiency.",
+    content: "Surfboard manufacturing traditionally relies on costly, time-consuming hand-shaping or CNC machining. I designed a parametric lattice structure optimized for additive manufacturing, carefully selecting materials that balance strength-to-weight ratio with printability. The result is a modular design system that allows customization while maintaining manufacturing efficiency and performance.",
+    closingText: "This project demonstrates how modern manufacturing techniques can transform traditional industries. By combining engineering principles with practical production constraints, we've created a solution that benefits both manufacturers and end users.",
     results: [
       "Reduced production costs by 40% compared to traditional methods",
       "Decreased manufacturing time from 8 hours to 2 hours per core",
