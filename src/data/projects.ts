@@ -26,7 +26,7 @@ export const projects: Project[] = [
     `.trim(),
     featured: true,
     heroImage: "/projects/project-1/hero_1.webp",
-    imageCount: 9,
+    imageCount: 10,
     year: "2021 - Present",
         overview: `
       The 3D‑printed surfboard started as an idea from my co‑founder, Luke, 

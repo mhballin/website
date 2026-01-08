@@ -19,9 +19,10 @@ const { project } = Astro.props;
 // Generate image paths automatically based on naming convention
 const projectNumber = project.id.split('-')[1]; // Extract number from "project-1"
 const images = project.imageCount 
-  ? Array.from({ length: project.imageCount }, (_, i) => 
-      `/projects/${project.id}/project_${projectNumber}_${i + 1}.webp`
-    )
+  ? Array.from({ length: project.imageCount }, (_, i) => {
+      const imageNum = String(i + 1).padStart(2, '01'); // Pad to 2 digits: 01, 02, etc.
+      return `/projects/${project.id}/project_${projectNumber}_${imageNum}.webp`;
+    })
   : [];
 ---
 
