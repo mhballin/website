@@ -6,6 +6,15 @@ export interface Project {
   heroImage: string;
   images: string[];
   tags: string[];
+  
+  // Optional storytelling fields
+  overview?: string;
+  challenge?: string;
+  solution?: string;
+  results?: string[];
+  year?: string;
+  role?: string;
+  imageCaptions?: { [key: string]: string };
 }
 
 export const projects: Project[] = [
@@ -21,6 +30,16 @@ export const projects: Project[] = [
       "/projects/project-1/detail-2.webp",
     ],
     tags: ["3D Printing", "Composites", "Product Design"],
+    year: "2021 - Present",
+    overview: "Traditional surfboard cores are labor-intensive and expensive to manufacture. I developed a 3D-printed core system that revolutionizes the production process while maintaining the performance characteristics surfers demand.",
+    challenge: "Surfboard manufacturing relies on costly, time-consuming hand-shaping or CNC machining. The challenge was to create a lightweight, structurally sound core that could be 3D printed economically without compromising board performance.",
+    solution: "Designed a parametric lattice structure optimized for additive manufacturing. Selected materials that balance strength-to-weight ratio with printability. Developed a modular design system that allows customization while maintaining manufacturing efficiency.",
+    results: [
+      "Reduced production costs by 40% compared to traditional methods",
+      "Decreased manufacturing time from 8 hours to 2 hours per core",
+      "Achieved weight parity with hand-shaped EPS cores",
+      "Enabled rapid prototyping and custom designs"
+    ],
   },
   {
     id: "project-2",
