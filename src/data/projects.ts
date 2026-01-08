@@ -65,6 +65,29 @@ export const projects: Project[] = [
     `.trim(),
     featured: true,
     heroImage: "/projects/project-2/hero_2.webp",
+    imageCount: 8,
+    year: "2021 - Present",
+    overview: `
+      At Blueprint Surf, I lead the development of a groundbreaking method for composite layup,
+       bonding a fiberglass composite to a lattice structure that spans gaps up to 5.6 
+       inches while maintaining the surface's overall contour. 
+    `.trim(),
+    content: `
+      Balancing between strength, weight, and aesthetics. The final layup and design 
+      needed to be fucking mint.
+    `.trim(),
+    closingText: `
+      The implementation of this quality management system transformed our manufacturing 
+      process. Team members became more confident in their work, and customer complaints 
+      dropped dramatically. The systems are still in use today.
+    `.trim(),
+    impact: [
+      "Achieved 95% first-pass quality rate across all products",
+      "Reduced material waste by 30% through better process control",
+      "Decreased customer returns by 40%",
+      "Created comprehensive training materials for new team members"
+    ],
+    fullWidthImages: [0, 3],
   },
   {
     id: "project-3",
@@ -75,6 +98,31 @@ export const projects: Project[] = [
     `.trim(),
     featured: false,
     heroImage: "/projects/project-3/hero_3.webp",
+    imageCount: 6,
+    year: "2022",
+    role: "Product Designer",
+    overview: `
+      This unique product combines functional lighting with surf-inspired aesthetics. 
+      The goal was to create an affordable, beautiful piece that brings the ocean 
+      into people's homes, perfect as a gift or personal accent piece.
+    `.trim(),
+    content: `
+      Using parametric design tools, I created a flexible workflow that allowed rapid 
+      iteration on form and features. The design needed to be manufacturable, durable, 
+      and visually striking while keeping production costs reasonable.
+    `.trim(),
+    closingText: `
+      The nightlight has become a popular item, appealing to surfers and coastal 
+      enthusiasts alike. The parametric design system allows us to quickly create 
+      variations and custom versions for special orders.
+    `.trim(),
+    impact: [
+      "Reduced design iteration time from weeks to days",
+      "Created a scalable product line with multiple variations",
+      "Achieved strong profit margins through efficient manufacturing",
+      "Generated positive customer feedback and repeat orders"
+    ],
+    fullWidthImages: [0],
   },
   {
     id: "project-4",
@@ -85,6 +133,31 @@ export const projects: Project[] = [
     `.trim(),
     featured: false,
     heroImage: "/projects/project-4/hero_4.webp",
+    imageCount: 7,
+    year: "2021",
+    role: "Product Developer",
+    overview: `
+      Stand-up paddleboarding requires staying hydrated, but existing solutions were 
+      clunky or unreliable. This project aimed to create a sleek, secure bottle holder 
+      that integrates seamlessly with paddleboard aesthetics and functionality.
+    `.trim(),
+    content: `
+      The design process involved extensive testing in real-world conditions. The holder 
+      needed to be secure enough to prevent bottles from falling during vigorous paddling, 
+      while remaining easy to use and install on various board types.
+    `.trim(),
+    closingText: `
+      After multiple prototypes and testing sessions on the water, the final design 
+      proved both practical and elegant. Users appreciate how it disappears into the 
+      board's design while providing reliable hydration access.
+    `.trim(),
+    impact: [
+      "Created a patented mounting system for universal board compatibility",
+      "Achieved zero bottle loss during extensive field testing",
+      "Designed for simple installation without tools or modifications",
+      "Received excellent reviews from early adopters and retailers"
+    ],
+    fullWidthImages: [1, 4],
   },
   {
     id: "project-5",
@@ -95,6 +168,31 @@ export const projects: Project[] = [
     `.trim(),
     featured: false,
     heroImage: "/projects/project-5/hero_5.webp",
+    imageCount: 5,
+    year: "2020 - 2021",
+    role: "Manufacturing Engineer",
+    overview: `
+      Surfboards and paddleboards need pressure equalization to prevent delamination 
+      caused by temperature changes. This project focused on creating an elegant, 
+      reliable vent plug using cast resin techniques for consistent quality.
+    `.trim(),
+    content: `
+      The casting process required careful attention to material selection, mold design, 
+      and production workflow. Each plug needed to be airtight yet allow proper venting, 
+      all while maintaining aesthetic appeal and durability.
+    `.trim(),
+    closingText: `
+      The optimized manufacturing process significantly reduced waste and improved 
+      consistency. The vent plugs are now a standard component across our product line, 
+      with thousands produced to date.
+    `.trim(),
+    impact: [
+      "Reduced material waste by 25% through process optimization",
+      "Achieved consistent quality across high-volume production",
+      "Decreased production time per unit by 40%",
+      "Created a scalable process suitable for contract manufacturing"
+    ],
+    fullWidthImages: [0, 2],
   },
   {
     id: "project-6",
@@ -105,5 +203,30 @@ export const projects: Project[] = [
     `.trim(),
     featured: false,
     heroImage: "/projects/project-6/hero_6.webp",
+    imageCount: 9,
+    year: "2022 - 2023",
+    role: "Product Designer & Engineer",
+    overview: `
+      Pickleball's explosive growth created demand for high-quality, affordable paddles. 
+      This project applied composite manufacturing expertise to create a competitive 
+      paddle with excellent performance characteristics and unique aesthetics.
+    `.trim(),
+    content: `
+      Paddle design requires balancing weight, stiffness, and damping properties. 
+      I developed custom mold systems and composite layup schedules to achieve 
+      professional-grade performance while keeping manufacturing costs reasonable.
+    `.trim(),
+    closingText: `
+      The reusable mold system proved to be a game-changer, allowing rapid iteration 
+      and consistent production quality. The paddles have received positive feedback 
+      from recreational and competitive players alike.
+    `.trim(),
+    impact: [
+      "Reduced tooling costs by 60% compared to traditional manufacturing",
+      "Achieved performance metrics comparable to premium brands",
+      "Created a paddle design that stands out visually in a crowded market",
+      "Established a scalable production system for future product variations"
+    ],
+    fullWidthImages: [0, 4, 7],
   },
 ];
