@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projects } from "../../data/projects";
 import { Image } from "astro:assets";
+import ImageModal from "../../components/ImageModal.astro";
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -20,7 +21,7 @@ const { project } = Astro.props;
 const projectNumber = project.id.split('-')[1]; // Extract number from "project-1"
 const images = project.imageCount 
   ? Array.from({ length: project.imageCount }, (_, i) => {
-      const imageNum = String(i + 1).padStart(2, '01'); // Pad to 2 digits: 01, 02, etc.
+      const imageNum = String(i + 1).padStart(2, '0'); // Pad to 2 digits: 01, 02, etc.
       return `/projects/${project.id}/project_${projectNumber}_${imageNum}.webp`;
     })
   : [];
@@ -82,14 +83,13 @@ const images = project.imageCount
           const isFullWidth = project.fullWidthImages?.includes(index);
           return (
             <div class={isFullWidth ? "md:col-span-2" : ""}>
-              <div class="w-full max-h-[600px] overflow-hidden rounded-lg flex items-center justify-center">
-                <Image
+              <div class="w-full overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                <img
                   src={image}
-                  width={1200}
-                  height={800}
-                  format="webp"
                   alt={`${project.title} - Image ${index + 1}`}
-                  class="w-full h-full object-contain"
+                  class="project-gallery-image w-full h-full object-cover"
+                  data-images={images.join(',')}
+                  data-index={index}
                 />
               </div>
             </div>
@@ -132,3 +132,5 @@ const images = project.imageCount
     </a>
   </div>
 </BaseLayout>
+
+<ImageModal />

@@ -60,12 +60,12 @@ export const projects: Project[] = [
     id: "project-2",
     title: "Surfboard Nightlight",
     description: `
-      Created a nightlight for my brother what needed a better
+      Created a nightlight for my brother who needed a 
       nightlight, and loves to surf
     `.trim(),
     featured: true,
     heroImage: "/projects/project-2/hero_2.webp",
-    imageCount: 4,
+    imageCount: 9,
     year: "2025",
     overview: `
       After seeing my older brother's new apartment, I noticed he had everything 
