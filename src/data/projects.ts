@@ -19,14 +19,14 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "project-1",
-    title: "3D-Printed Surfboard Core",
+    title: "3D-Printed Surfboards - Revise lanugage for whole project (composites)",
     description: `
       Engineered innovative 3D-printed core system for composite surfboards. 
       Optimized material selection and manufacturing process, reducing production costs.
     `.trim(),
     featured: true,
     heroImage: "/projects/project-1/hero_1.webp",
-    imageCount: 11,
+    imageCount: 13,
     year: "2021 - Present",
         overview: `
       The 3D‑printed surfboard started as an idea from my co‑founder, Luke, 
@@ -58,19 +58,19 @@ export const projects: Project[] = [
   },
   {
     id: "project-2",
-    title: "Composite Layup System",
+    title: "Surfboard Nightlight",
     description: `
-      Developed quality management systems for fiberglass and epoxy composite manufacturing. 
-      Achieved 95% first-pass quality rate.
+      Created a nightlight for my brother what needed a better
+      nightlight, and loves to surf
     `.trim(),
     featured: true,
     heroImage: "/projects/project-2/hero_2.webp",
-    imageCount: 8,
-    year: "2021 - Present",
+    imageCount: 4,
+    year: "2025",
     overview: `
-      At Blueprint Surf, I lead the development of a groundbreaking method for composite layup,
-       bonding a fiberglass composite to a lattice structure that spans gaps up to 5.6 
-       inches while maintaining the surface's overall contour. 
+      After seeing my older brother's new apartment, I noticed he had everything 
+      but a nice nightlight. I figured I should make him one. Simple elegant, 
+      and only on when someone walks by 
     `.trim(),
     content: `
       Balancing between strength, weight, and aesthetics. The final layup and design 
@@ -91,48 +91,13 @@ export const projects: Project[] = [
   },
   {
     id: "project-3",
-    title: "Surfboard Nightlight",
-    description: `
-      Created parametric design workflows using Rhino/Grasshopper for rapid prototyping. 
-      Reduced design-to-prototype cycle time from weeks to days.
-    `.trim(),
-    featured: false,
-    heroImage: "/projects/project-3/hero_3.webp",
-    imageCount: 6,
-    year: "2022",
-    role: "Product Designer",
-    overview: `
-      This unique product combines functional lighting with surf-inspired aesthetics. 
-      The goal was to create an affordable, beautiful piece that brings the ocean 
-      into people's homes, perfect as a gift or personal accent piece.
-    `.trim(),
-    content: `
-      Using parametric design tools, I created a flexible workflow that allowed rapid 
-      iteration on form and features. The design needed to be manufacturable, durable, 
-      and visually striking while keeping production costs reasonable.
-    `.trim(),
-    closingText: `
-      The nightlight has become a popular item, appealing to surfers and coastal 
-      enthusiasts alike. The parametric design system allows us to quickly create 
-      variations and custom versions for special orders.
-    `.trim(),
-    impact: [
-      "Reduced design iteration time from weeks to days",
-      "Created a scalable product line with multiple variations",
-      "Achieved strong profit margins through efficient manufacturing",
-      "Generated positive customer feedback and repeat orders"
-    ],
-    fullWidthImages: [0],
-  },
-  {
-    id: "project-4",
     title: "Paddleboard Waterbottle Holder",
     description: `
       Comprehensive material testing and analysis for composite performance validation. 
       Developed standardized testing protocols and documentation.
     `.trim(),
     featured: false,
-    heroImage: "/projects/project-4/hero_4.webp",
+    heroImage: "/projects/project-3/hero_3.webp",
     imageCount: 7,
     year: "2021",
     role: "Product Developer",
@@ -160,14 +125,14 @@ export const projects: Project[] = [
     fullWidthImages: [1, 4],
   },
   {
-    id: "project-5",
+    id: "project-4",
     title: "Cast Resin Vent Plug",
     description: `
       Analyzed and optimized manufacturing processes across multiple product lines. 
       Achieved 25% reduction in material waste and production costs.
     `.trim(),
     featured: false,
-    heroImage: "/projects/project-5/hero_5.webp",
+    heroImage: "/projects/project-4/hero_4.webp",
     imageCount: 5,
     year: "2020 - 2021",
     role: "Manufacturing Engineer",
@@ -195,14 +160,14 @@ export const projects: Project[] = [
     fullWidthImages: [0, 2],
   },
   {
-    id: "project-6",
+    id: "project-5",
     title: "Pickelball Paddle",
     description: `
       Designed and built reusable mold systems for rapid product manufacturing. 
       Reduced tooling costs and improved production consistency.
     `.trim(),
     featured: false,
-    heroImage: "/projects/project-6/hero_6.webp",
+    heroImage: "/projects/project-5/hero_5.webp",
     imageCount: 9,
     year: "2022 - 2023",
     role: "Product Designer & Engineer",
