@@ -6,5 +6,4 @@ export const SITE_DESCRIPTION = 'Product developer and composites engineer speci
 export const SITE_AUTHOR = 'Michael Ballin';
 export const CONTACT_EMAIL = 'michaelhgballin@gmail.com';
 export const SITE_URL = 'https://michaelballin.com';
-export const GENERATE_SLUG_FROM_TITLE = true
 export const TRANSITION_API = true
