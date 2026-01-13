@@ -67,7 +67,7 @@ export const projects: Project[] = [
     featured: true,
     heroImage: "/projects/project-2/hero_2.webp",
     imageCount: 11,
-    year: "2025",
+    year: "2025 - 2026",
     overview: `
       After seeing my older brother's new apartment, I noticed he had everything 
       but a nice nightlight. I figured I should make him one. Simple elegant, 
@@ -82,7 +82,7 @@ export const projects: Project[] = [
       Once I printed the first prototype, I realized the light was too bright
        and would also reveal any internal cavities if present. After working 
        in Fusion 360 for the first few prototypes, I realized it would be a 
-       lot easier in Rhino /Grasshopper, where I could make quicker tweaks between prototypes.  
+       lot easier in Rhino /Grasshopper, where I could make quicker tweaks between prototypes. 
     `.trim(),
     impactTitle: false,
     impact: [
@@ -147,18 +147,19 @@ export const projects: Project[] = [
 
     `.trim(),
     content: `
-      First a 3D
+      First, a 3D-printed part is printed, then silicone is poured into that mold. 
+      Once cured, the 3D-printed piece is discarded. While working on a surfboard, 
+      extra resin (which normally is discarded) can be poured into the silicone mold. 
+      Once cured, it is popped out, cleaned up, tapped, and ready to go into the surfboard.
     `.trim(),
     closingText: `
-      The optimized manufacturing process significantly reduced waste and improved 
-      consistency. The vent plugs are now a standard component across our product line, 
-      with thousands produced to date.
+      The optimized manufacturing process significantly reduced waste and improved visual 
+      consistency (allowing for color matching). The vent plugs are now a standard component 
+      across our product line.
     `.trim(),
     impact: [
-      "Reduced material waste by 25% through process optimization",
-      "Achieved consistent quality across high-volume production",
-      "Decreased production time per unit by 40%",
-      "Created a scalable process suitable for contract manufacturing"
+      "Reduced material waste ",
+      "Achieved consistent color across production",
     ],
     fullWidthImages: [0, 2],
   },
@@ -171,29 +172,30 @@ export const projects: Project[] = [
     `.trim(),
     featured: false,
     heroImage: "/projects/project-5/hero_5.webp",
-    imageCount: 9,
-    year: "2022 - 2023",
-    role: "Product Designer & Engineer",
+    imageCount: 7,
+    year: "2025 - 2026",
     overview: `
-      Pickleball's explosive growth created demand for high-quality, affordable paddles. 
-      This project applied composite manufacturing expertise to create a competitive 
-      paddle with excellent performance characteristics and unique aesthetics.
+      My parents have been getting into pickleball and were talking about playing 
+      with their friends. I had been looking for a gift for my mother's birthday 
+      and was drawing a blank. I figured I should make her a pickleball paddle. 
+      With little information on the sport, paddles, or what's on the market, I started prototyping. 
     `.trim(),
     content: `
-      Paddle design requires balancing weight, stiffness, and damping properties. 
-      I developed custom mold systems and composite layup schedules to achieve 
-      professional-grade performance while keeping manufacturing costs reasonable.
+      Most handmade pickleball paddle I found online were made of wood or were 
+      fully 3D printed. The wooden ones are heavy, and the 3D printed ones are 
+      loud and heavy. Seeing that paddle on the market were made of sandwich 
+      panels with a honeycomb lattice structure, I figured I could combine my fiberglassing 
+      skills with 3D printing and make a great paddle. 
     `.trim(),
     closingText: `
-      The reusable mold system proved to be a game-changer, allowing rapid iteration 
-      and consistent production quality. The paddles have received positive feedback 
-      from recreational and competitive players alike.
+      The first prototype feels great, is strong, but may have too much 
+      bounce back. Currently testing the paddle to see what to change next, 
+      before making another prototype. 
     `.trim(),
+    impactTitle: "Next Steps",
     impact: [
-      "Reduced tooling costs by 60% compared to traditional manufacturing",
-      "Achieved performance metrics comparable to premium brands",
-      "Created a paddle design that stands out visually in a crowded market",
-      "Established a scalable production system for future product variations"
+      "Custom made pickeball paddle",
+      "Still a work in progress",
     ],
     fullWidthImages: [0, 4, 7],
   },
