@@ -1,12 +1,12 @@
 # Michael Ballin - Portfolio Website
 
-Personal portfolio website showcasing product development and composites engineering projects.
+Personal portfolio website showcasing portfolio
 
 🌐 **[michaelballin.com](https://michaelballin.com)**
 
 ## About
 
-Product developer and composites engineer specializing in technical innovation and manufacturing optimization. Co-founder of Blueprint, bringing environmental science expertise to outdoor products development.
+This is my personal website built using Astro and TailwindCSS. Used to highlight my work as a product developer, composites engineer, and entrepreneur.
 
 ## Tech Stack
 
