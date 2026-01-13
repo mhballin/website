@@ -11,6 +11,7 @@ export interface Project {
   content?: string;  // Main paragraph after hero image
   closingText?: string;  // Paragraph before impact
   impact?: string[];
+  impactTitle?: string | false;  // Custom heading for impact section, false to hide, defaults to "Impact"
   year?: string;
   role?: string;
   fullWidthImages?: number[];  // Indices of images to display full-width (rest in 2-column)
@@ -65,7 +66,7 @@ export const projects: Project[] = [
     `.trim(),
     featured: true,
     heroImage: "/projects/project-2/hero_2.webp",
-    imageCount: 9,
+    imageCount: 11,
     year: "2025",
     overview: `
       After seeing my older brother's new apartment, I noticed he had everything 
@@ -73,19 +74,19 @@ export const projects: Project[] = [
       and only on when someone walks by 
     `.trim(),
     content: `
-      Balancing between strength, weight, and aesthetics. The final layup and design 
-      needed to be fucking mint.
+      After a quick brainstorm, we came up with an original idea: 
+      a simple bathroom light shaped like a surfboard. Something 
+      simple and clean, that would first be functional while also looking good. 
     `.trim(),
     closingText: `
-      The implementation of this quality management system transformed our manufacturing 
-      process. Team members became more confident in their work, and customer complaints 
-      dropped dramatically. The systems are still in use today.
+      Once I printed the first prototype, I realized the light was too bright
+       and would also reveal any internal cavities if present. After working 
+       in Fusion 360 for the first few prototypes, I realized it would be a 
+       lot easier in Rhino /Grasshopper, where I could make quicker tweaks between prototypes.  
     `.trim(),
+    impactTitle: false,
     impact: [
-      "Achieved 95% first-pass quality rate across all products",
-      "Reduced material waste by 30% through better process control",
-      "Decreased customer returns by 40%",
-      "Created comprehensive training materials for new team members"
+      "Happy Brother",
     ],
     fullWidthImages: [0, 3],
   },
@@ -98,29 +99,30 @@ export const projects: Project[] = [
     `.trim(),
     featured: false,
     heroImage: "/projects/project-3/hero_3.webp",
-    imageCount: 7,
-    year: "2021",
-    role: "Product Developer",
+    imageCount: 6,
+    year: "2025",
     overview: `
-      Stand-up paddleboarding requires staying hydrated, but existing solutions were 
-      clunky or unreliable. This project aimed to create a sleek, secure bottle holder 
-      that integrates seamlessly with paddleboard aesthetics and functionality.
+      A friend of mine and I got into prone paddling. He had bought a water bottle 
+      holder to hydrate on longer paddles. With a longer paddling trip coming up 
+      that weekend and an online order taking 1-2 weeks, a few hours on the computer 
+      and a 3D-printed part would do the job and be much cheaper. 
     `.trim(),
     content: `
-      The design process involved extensive testing in real-world conditions. The holder 
-      needed to be secure enough to prevent bottles from falling during vigorous paddling, 
-      while remaining easy to use and install on various board types.
+      After a 10-mile paddle, it worked great. Next would be a 2-bottle cage, 
+      holding more water, both customizable for any size bottle.
     `.trim(),
     closingText: `
-      After multiple prototypes and testing sessions on the water, the final design 
-      proved both practical and elegant. Users appreciate how it disappears into the 
-      board's design while providing reliable hydration access.
+      Throughout the summer, after a few different testing sessions, 
+      I'm happy with the product, although not the most eye-catching 
+      or revolutionary, it solves a problem, and will keep me hydrated 
+      during long days out on the water.
     `.trim(),
+
+    impactTitle: false,
     impact: [
-      "Created a patented mounting system for universal board compatibility",
-      "Achieved zero bottle loss during extensive field testing",
-      "Designed for simple installation without tools or modifications",
-      "Received excellent reviews from early adopters and retailers"
+      "Fits any size water bottle securely",
+      "Fits into existing board fin boxes for easy installation",
+      "Designed for simple installation without tools or modifications"
     ],
     fullWidthImages: [1, 4],
   },
@@ -128,23 +130,24 @@ export const projects: Project[] = [
     id: "project-4",
     title: "Cast Resin Vent Plug",
     description: `
-      Analyzed and optimized manufacturing processes across multiple product lines. 
-      Achieved 25% reduction in material waste and production costs.
-    `.trim(),
-    featured: false,
-    heroImage: "/projects/project-4/hero_4.webp",
-    imageCount: 5,
-    year: "2020 - 2021",
-    role: "Manufacturing Engineer",
-    overview: `
       Surfboards and paddleboards need pressure equalization to prevent delamination 
       caused by temperature changes. This project focused on creating an elegant, 
       reliable vent plug using cast resin techniques for consistent quality.
     `.trim(),
+    featured: false,
+    heroImage: "/projects/project-4/hero_4.webp",
+    imageCount: 4,
+    year: "2025",
+    overview: `
+      Surfboards and paddleboards require pressure equalization to prevent 
+      delamination from tempersature changes. This project focused on creating 
+      a reliable vent plug that could be made with simple shop materials. 
+      Prior to this, we had been resin 3D-printing the vents, which worked 
+      great; however, it was costly and time-consuming.
+
+    `.trim(),
     content: `
-      The casting process required careful attention to material selection, mold design, 
-      and production workflow. Each plug needed to be airtight yet allow proper venting, 
-      all while maintaining aesthetic appeal and durability.
+      First a 3D
     `.trim(),
     closingText: `
       The optimized manufacturing process significantly reduced waste and improved 
