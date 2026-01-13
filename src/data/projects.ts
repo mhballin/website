@@ -20,14 +20,14 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "project-1",
-    title: "3D-Printed Surfboards - Revise lanugage for whole project (composites)",
+    title: "3D-Printed Composite Surfboards",
     description: `
       Engineered innovative 3D-printed core system for composite surfboards. 
       Optimized material selection and manufacturing process, reducing production costs.
     `.trim(),
     featured: true,
     heroImage: "/projects/project-1/hero_1.webp",
-    imageCount: 13,
+    imageCount: 14,
     year: "2021 - Present",
         overview: `
       The 3D‑printed surfboard started as an idea from my co‑founder, Luke, 
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     featured: true,
     heroImage: "/projects/project-2/hero_2.webp",
     imageCount: 11,
-    year: "2025 - 2026",
+    year: "2025 - Present",
     overview: `
       After seeing my older brother's new apartment, I noticed he had everything 
       but a nice nightlight. I figured I should make him one. Simple elegant, 
@@ -94,8 +94,10 @@ export const projects: Project[] = [
     id: "project-3",
     title: "Paddleboard Waterbottle Holder",
     description: `
-      Comprehensive material testing and analysis for composite performance validation. 
-      Developed standardized testing protocols and documentation.
+      A friend of mine and I got into prone paddling. He had bought a water bottle 
+      holder to hydrate on longer paddles. With a longer paddling trip coming up 
+      that weekend and an online order taking 1-2 weeks, a few hours on the computer 
+      and a 3D-printed part would do the job and be much cheaper. 
     `.trim(),
     featured: false,
     heroImage: "/projects/project-3/hero_3.webp",
@@ -140,7 +142,7 @@ export const projects: Project[] = [
     year: "2025",
     overview: `
       Surfboards and paddleboards require pressure equalization to prevent 
-      delamination from tempersature changes. This project focused on creating 
+      delamination from temperature changes. This project focused on creating 
       a reliable vent plug that could be made with simple shop materials. 
       Prior to this, we had been resin 3D-printing the vents, which worked 
       great; however, it was costly and time-consuming.
@@ -165,7 +167,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-5",
-    title: "Pickelball Paddle",
+    title: "Pickleball Paddle",
     description: `
       Designed and built reusable mold systems for rapid product manufacturing. 
       Reduced tooling costs and improved production consistency.
@@ -173,7 +175,7 @@ export const projects: Project[] = [
     featured: false,
     heroImage: "/projects/project-5/hero_5.webp",
     imageCount: 7,
-    year: "2025 - 2026",
+    year: "2025 - Present",
     overview: `
       My parents have been getting into pickleball and were talking about playing 
       with their friends. I had been looking for a gift for my mother's birthday 
@@ -194,7 +196,7 @@ export const projects: Project[] = [
     `.trim(),
     impactTitle: "Next Steps",
     impact: [
-      "Custom made pickeball paddle",
+      "Custom made pickleball paddle",
       "Still a work in progress",
     ],
     fullWidthImages: [0, 4, 7],
