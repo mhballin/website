@@ -17,6 +17,9 @@ interface Props {
 
 const { project } = Astro.props;
 
+// Generate meta description from project overview or description
+const metaDescription = project.overview || project.description;
+
 // Generate image paths automatically based on naming convention
 const projectNumber = project.id.split('-')[1]; // Extract number from "project-1"
 const images = project.imageCount 
@@ -27,7 +30,12 @@ const images = project.imageCount
   : [];
 ---
 
-<BaseLayout title={project.title} sideBarActiveItemID="work">
+<BaseLayout 
+  title={project.title} 
+  description={metaDescription}
+  image={project.heroImage}
+  sideBarActiveItemID="work"
+>
   <!-- Back navigation -->
   <div class="mb-8">
     <a href="/work" class="text-primary hover:underline inline-flex items-center gap-2">
