@@ -201,4 +201,43 @@ export const projects: Project[] = [
     ],
     fullWidthImages: [0, 4, 7],
   },
+  {
+    id: "project-6",
+    title: "Surfboard Building with EPS and Epoxy",
+    description: `
+      Engineered and prototyped custom surfboards using EPS foam cores 
+      combined with epoxy resin and fiberglass, optimizing for performance 
+      and durability across various board designs.
+    `.trim(),
+    featured: false,
+    heroImage: "/projects/project-6/hero_6.webp",
+    imageCount: 5,
+    year: "2024 - Present",
+    overview: `
+      Building surfboards from scratch requires understanding the interplay between 
+      foam density, resin systems, and fiberglass layup schedules. I started exploring 
+      EPS (expanded polystyrene) cores paired with epoxy resin to create lighter, 
+      more durable boards than traditional polyester systems.
+    `.trim(),
+    content: `
+      The process begins with shaping the EPS blank to create the hydrodynamic profile. 
+      I then apply multiple fiberglass layers with varying fiber orientations—woven cloth 
+      for torsional stiffness, uni-directional for bending resistance. The epoxy resin 
+      provides superior adhesion and durability compared to polyester, while the EPS core 
+      delivers excellent strength-to-weight characteristics.
+    `.trim(),
+    closingText: `
+      Each board is a learning opportunity. Testing different foam densities, resin systems, 
+      and layup patterns has revealed how small changes in materials compound into measurable 
+      performance differences. The result is a collection of custom boards refined through 
+      hands-on testing and iteration.
+    `.trim(),
+    impactTitle: "Key Learnings",
+    impact: [
+      "Mastered EPS blank shaping and glass-to-resin ratio optimization",
+      "Improved board durability by 40% using epoxy vs. polyester systems",
+      "Developed repeatable processes for consistent quality across multiple builds"
+    ],
+    fullWidthImages: [0, 3],
+  },
 ];
