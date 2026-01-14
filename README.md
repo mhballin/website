@@ -20,7 +20,8 @@ This is my personal website built using Astro and TailwindCSS. Used to highlight
 - Email: [michaelhgballin@gmail.com](mailto:michaelhgballin@gmail.com)
 - LinkedIn: [linkedin.com/in/mike-ballin](https://www.linkedin.com/in/mike-ballin/)
 
-- TODO: Add a contact page with a hosted form (Formspree or Cloudflare Worker + Turnstile) to replace mailto links.
+## TO DO
+- Add a contact page with a hosted form (Formspree or Cloudflare Worker + Turnstile) to replace mailto links.
 
 ## Credits
 
