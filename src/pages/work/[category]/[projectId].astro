@@ -1,0 +1,204 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { projects, type ProjectCategory } from "../../../data/projects";
+import { Image } from "astro:assets";
+import ImageModal from "../../../components/ImageModal.astro";
+
+export function getStaticPaths() {
+  return projects.flatMap((project) =>
+    [project.category as ProjectCategory].map((category) => ({
+      params: { category, projectId: project.id },
+      props: { project, category },
+    }))
+  );
+}
+
+interface Props {
+  project: (typeof projects)[0];
+  category: ProjectCategory;
+}
+
+const { project, category } = Astro.props;
+
+// Validate that project matches category
+if (project.category !== category) {
+  return Astro.redirect(`/work/${project.category}/${project.id}`);
+}
+
+// Generate meta description from project overview or description
+const metaDescription = project.overview || project.description;
+
+// Generate image paths automatically based on naming convention
+const projectNumber = project.id.split("-")[1]; // Extract number from "project-1"
+const images = project.imageCount
+  ? Array.from({ length: project.imageCount }, (_, i) => {
+      const imageNum = String(i + 1).padStart(2, "0"); // Pad to 2 digits: 01, 02, etc.
+      return `/projects/${project.id}/project_${projectNumber}_${imageNum}.webp`;
+    })
+  : [];
+
+const categoryLabels: Record<ProjectCategory, string> = {
+  blueprint: "Blueprint",
+  making: "Making",
+  creative: "Creative",
+};
+---
+
+<BaseLayout
+  title={project.title}
+  description={metaDescription}
+  image={project.heroImage}
+  sideBarActiveItemID="work"
+>
+  <!-- Back navigation with breadcrumb -->
+  <div class="mb-8">
+    <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
+      <a href="/work" class="text-primary hover:underline">Work</a>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+      <a href={`/work/${category}`} class="text-primary hover:underline">
+        {categoryLabels[category]}
+      </a>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+      <span>{project.title}</span>
+    </div>
+    <a
+      href={`/work/${category}`}
+      class="text-primary hover:underline inline-flex items-center gap-2"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"
+        ></path>
+      </svg>
+      Back to {categoryLabels[category]}
+    </a>
+  </div>
+
+  <!-- Title & Metadata -->
+  <div class="max-w-3xl mx-auto mb-16">
+    <h1 class="text-5xl font-bold mb-6 leading-tight">{project.title}</h1>
+
+    <div class="flex flex-wrap gap-4 mb-8 text-sm text-gray-600">
+      {project.year && <div><span class="font-semibold">Year:</span> {project.year}</div>}
+      {project.role && <div><span class="font-semibold">Role:</span> {project.role}</div>}
+      <div>
+        <span class="font-semibold">Category:</span>
+        <a href={`/work/${category}`} class="text-primary hover:underline ml-1">
+          {categoryLabels[category]}
+        </a>
+      </div>
+    </div>
+
+    <p class="text-xl leading-relaxed text-gray-700">
+      {project.overview || project.description}
+    </p>
+  </div>
+
+  <!-- Hero Image -->
+  <div class="w-full mb-16">
+    <div class="max-w-5xl mx-auto">
+      <div class="w-full aspect-[21/9] overflow-hidden bg-gray-100 rounded-xl">
+        <Image
+          src={project.heroImage}
+          width={1600}
+          height={686}
+          format="webp"
+          alt={project.title}
+          class="w-full h-full object-cover"
+          style="object-position: 50% 28%"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Paragraph -->
+  {
+    project.content && (
+      <div class="max-w-4xl mx-auto mb-16">
+        <p class="text-lg leading-relaxed text-gray-700">{project.content}</p>
+      </div>
+    )
+  }
+
+  <!-- All Images Gallery -->
+  {
+    images.length > 0 && (
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {images.map((image, index) => {
+            const isFullWidth = project.fullWidthImages?.includes(index);
+            return (
+              <div class={isFullWidth ? "md:col-span-2" : ""}>
+                <div class="w-full overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                  <img
+                    src={image}
+                    alt={`${project.title} - Image ${index + 1}`}
+                    class="project-gallery-image w-full h-full object-cover"
+                    data-images={images.join(",")}
+                    data-index={index}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  <!-- Closing Section -->
+  {
+    (project.closingText || (project.impact && project.impact.length > 0)) && (
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="bg-base-200 rounded-2xl p-8">
+          {project.impactTitle !== false && (
+            <h2 class="text-3xl font-bold mb-6">{project.impactTitle || "Impact"}</h2>
+          )}
+
+          {project.closingText && (
+            <p class="text-lg leading-relaxed text-gray-700 mb-6">{project.closingText}</p>
+          )}
+
+          {project.impact && project.impact.length > 0 && (
+            <ul class="space-y-3">
+              {project.impact.map((result) => (
+                <li class="flex items-start gap-3">
+                  <svg
+                    class="w-6 h-6 text-primary flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-lg text-gray-700">{result}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  <!-- Navigation to other projects in category -->
+  <div class="max-w-4xl mx-auto mt-20 pt-8 border-t border-gray-200">
+    <a href={`/work/${category}`} class="btn btn-outline">
+      ← View All {categoryLabels[category]} Projects
+    </a>
+  </div>
+</BaseLayout>
+
+<ImageModal />

@@ -1,36 +1,43 @@
 ---
 import { Image } from "astro:assets";
+import type { Project, ProjectCategory } from "../data/projects";
 
 interface Props {
   projects: Project[];
+  category?: ProjectCategory;
 }
 
-const { projects } = Astro.props;
-import type { Project } from "../data/projects";
+const { projects, category } = Astro.props;
 ---
 
 <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
   {
-    projects.map((project) => (
-      <a
-        href={`/projects/${project.id}`}
-        class="group relative overflow-hidden rounded-lg aspect-square cursor-pointer"
-      >
-        <Image
-          src={project.heroImage}
-          width={400}
-          height={400}
-          format="webp"
-          alt={project.title}
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-end p-4">
-          <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 class="font-bold text-lg">{project.title}</h3>
+    projects.map((project) => {
+      const href = category 
+        ? `/work/${category}/${project.id}`
+        : `/work/${project.category}/${project.id}`;
+      
+      return (
+        <a
+          href={href}
+          class="group relative overflow-hidden rounded-lg aspect-square cursor-pointer"
+        >
+          <Image
+            src={project.heroImage}
+            width={400}
+            height={400}
+            format="webp"
+            alt={project.title}
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-end p-4">
+            <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <h3 class="font-bold text-lg">{project.title}</h3>
+            </div>
           </div>
-        </div>
-      </a>
-    ))
+        </a>
+      );
+    })
   }
 </div>
 

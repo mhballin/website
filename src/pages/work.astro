@@ -1,17 +1,68 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectGrid from "../components/ProjectGrid.astro";
-import ImageModal from "../components/ImageModal.astro";
 import { projects } from "../data/projects";
 ---
 
 <BaseLayout title="Work" sideBarActiveItemID="work">
-  <ImageModal />
-
   <div class="pb-8">
     <div class="text-3xl w-full font-bold mb-2">Work & Projects</div>
-    <div class="text-lg text-gray-600 mb-5">From 3D-printed nightlights to composite manufacturing—explore my product development portfolio.</div>
+    <div class="text-lg text-gray-600 mb-8">Explore my work across Blueprint, Making, and Creative projects.</div>
   </div>
 
-  <ProjectGrid projects={projects} />
+  <!-- Category Tiles -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+    <!-- Blueprint -->
+    <a href="/work/blueprint" class="group">
+      <div class="bg-base-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+        <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+          <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Blueprint</h3>
+          <p class="text-gray-600 text-sm mb-4">Startup & professional projects</p>
+          <span class="inline-block text-sm font-semibold text-primary">
+            {projects.filter(p => p.category === "blueprint").length} project{projects.filter(p => p.category === "blueprint").length !== 1 ? "s" : ""}
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Making -->
+    <a href="/work/making" class="group">
+      <div class="bg-base-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+        <div class="h-48 bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center">
+          <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+          </svg>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Making</h3>
+          <p class="text-gray-600 text-sm mb-4">Personal builds & prototypes</p>
+          <span class="inline-block text-sm font-semibold text-primary">
+            {projects.filter(p => p.category === "making").length} project{projects.filter(p => p.category === "making").length !== 1 ? "s" : ""}
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Creative -->
+    <a href="/work/creative" class="group">
+      <div class="bg-base-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+        <div class="h-48 bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
+          <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a6 6 0 016 6v10a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a6 6 0 00-6-6H5a2 2 0 00-2 2v4a4 4 0 004 4z" />
+          </svg>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Creative</h3>
+          <p class="text-gray-600 text-sm mb-4">Design & visual work</p>
+          <span class="inline-block text-sm font-semibold text-primary">
+            {projects.filter(p => p.category === "creative").length} project{projects.filter(p => p.category === "creative").length !== 1 ? "s" : ""}
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
 </BaseLayout>

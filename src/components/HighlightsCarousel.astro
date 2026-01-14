@@ -18,7 +18,7 @@ import type { Project } from "../data/projects";
     {
       projects.map((project) => (
         <a
-          href={`/projects/${project.id}`}
+          href={`/work/${project.category}/${project.id}`}
           class="flex-shrink-0 w-80 h-80 min-w-80 min-h-80 snap-start rounded-lg overflow-hidden group cursor-pointer"
         >
           <div class="relative w-full h-full">

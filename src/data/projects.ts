@@ -1,8 +1,11 @@
+export type ProjectCategory = "blueprint" | "making" | "creative";
+
 export interface Project {
   id: string;
   title: string;
   description: string;
   featured: boolean;
+  category: ProjectCategory;
   heroImage: string;
   imageCount?: number;  // Number of additional images (project_y_1.webp, project_y_2.webp, etc.)
   
@@ -26,6 +29,7 @@ export const projects: Project[] = [
       Optimized material selection and manufacturing process, reducing production costs.
     `.trim(),
     featured: true,
+    category: "blueprint",
     heroImage: "/projects/project-1/hero_1.webp",
     imageCount: 14,
     year: "2021 - Present",
@@ -65,6 +69,7 @@ export const projects: Project[] = [
       nightlight, and loves to surf
     `.trim(),
     featured: true,
+    category: "making",
     heroImage: "/projects/project-2/hero_2.webp",
     imageCount: 11,
     year: "2025 - Present",
@@ -100,6 +105,7 @@ export const projects: Project[] = [
       and a 3D-printed part would do the job and be much cheaper. 
     `.trim(),
     featured: false,
+    category: "making",
     heroImage: "/projects/project-3/hero_3.webp",
     imageCount: 6,
     year: "2025",
@@ -137,6 +143,7 @@ export const projects: Project[] = [
       reliable vent plug using cast resin techniques for consistent quality.
     `.trim(),
     featured: false,
+    category: "making",
     heroImage: "/projects/project-4/hero_4.webp",
     imageCount: 4,
     year: "2025",
@@ -173,6 +180,7 @@ export const projects: Project[] = [
       Reduced tooling costs and improved production consistency.
     `.trim(),
     featured: false,
+    category: "making",
     heroImage: "/projects/project-5/hero_5.webp",
     imageCount: 7,
     year: "2025 - Present",
@@ -210,6 +218,7 @@ export const projects: Project[] = [
       and durability across various board designs.
     `.trim(),
     featured: false,
+    category: "making",
     heroImage: "/projects/project-6/hero_6.webp",
     imageCount: 5,
     year: "2024 - Present",
@@ -239,5 +248,41 @@ export const projects: Project[] = [
       "Developed repeatable processes for consistent quality across multiple builds"
     ],
     fullWidthImages: [0, 3],
+  },
+  {
+    id: "project-7",
+    title: "Casio Watch Whoop Fitting",
+    description: `
+      Designed and 3D-printed a custom fitting adapter that allows a Casio watch 
+      to integrate seamlessly with a Whoop band, combining durability with minimalist aesthetics.
+    `.trim(),
+    featured: false,
+    category: "making",
+    heroImage: "/projects/project-7/hero_7.webp",
+    imageCount: 4,
+    year: "2026",
+    overview: `
+      Wearable tech enthusiasts often want to combine their favorite watch with fitness tracking bands. 
+      I saw an opportunity to create a clean, functional adapter that lets a Casio watch sit comfortably 
+      on a Whoop strap without compromising either device's integrity.
+    `.trim(),
+    content: `
+      The design required precise measurements of both the Casio case lugs and the Whoop band attachment points. 
+      Using Fusion 360, I modeled a minimal frame that sandwiches the watch case between two retention clips, 
+      allowing the assembly to slide onto the Whoop band's velcro surface. The 3D-printed material (nylon reinforced) 
+      provides enough rigidity to hold the watch secure while remaining lightweight.
+    `.trim(),
+    closingText: `
+      After several iterations to dial in the fit tolerance, the final design keeps the watch visible and accessible 
+      while distributing weight evenly across the wrist. It's a small project that solves a niche problem—proof that 
+      thoughtful design doesn't require complexity.
+    `.trim(),
+    impactTitle: false,
+    impact: [
+      "Seamless integration of Casio watch with Whoop band",
+      "Lightweight 3D-printed solution with minimal material waste",
+      "Clean aesthetics that don't compromise device visibility"
+    ],
+    fullWidthImages: [0, 2],
   },
 ];
