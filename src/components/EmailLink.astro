@@ -1,0 +1,100 @@
+---
+import { CONTACT_EMAIL } from "../config";
+---
+
+<div class="email-link-wrapper relative">
+  <button
+    class="email-link-button mx-3 relative group"
+    data-email={CONTACT_EMAIL}
+    title="Email"
+    aria-label="Email"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      style="fill: currentColor;"
+      class="group-hover:scale-110 transition-transform"
+    >
+      <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z" />
+    </svg>
+  </button>
+
+  <!-- Expanded dropdown view -->
+  <div class="email-expanded hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-base-200 rounded-lg shadow-2xl overflow-visible min-w-max p-4 flex flex-col items-center gap-3 z-50">
+    <span class="text-sm font-medium" data-email-text></span>
+    <div class="flex gap-2">
+      <button
+        class="email-copy-btn btn btn-sm btn-ghost"
+        title="Copy email"
+      >
+        Copy
+      </button>
+      <a
+        class="email-send-btn btn btn-sm btn-ghost"
+        title="Send email"
+      >
+        Send
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const wrapper = document.querySelector('.email-link-wrapper');
+  const button = wrapper?.querySelector('.email-link-button');
+  const expandedView = wrapper?.querySelector('.email-expanded');
+  const emailText = expandedView?.querySelector('[data-email-text]');
+  const copyBtn = expandedView?.querySelector('.email-copy-btn');
+  const sendBtn = expandedView?.querySelector('.email-send-btn');
+  const email = button?.dataset.email;
+
+  if (!email) {
+    console.error('Email not found in EmailLink component');
+  }
+
+  // Set email address and send link
+  if (emailText) emailText.textContent = email;
+  if (sendBtn) sendBtn.href = `mailto:${email}`;
+
+  // Handle copy action
+  const performCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      const originalText = copyBtn?.textContent;
+      if (copyBtn) {
+        copyBtn.textContent = '✓ Copied!';
+        setTimeout(() => {
+          copyBtn.textContent = originalText;
+        }, 2000);
+      }
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  };
+
+  // Toggle dropdown on button click
+  button?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !expandedView?.classList.contains('hidden');
+    if (isOpen) {
+      expandedView?.classList.add('hidden');
+    } else {
+      expandedView?.classList.remove('hidden');
+    }
+  });
+
+  // Copy button click
+  copyBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    performCopy();
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!wrapper?.contains(e.target as Node)) {
+      expandedView?.classList.add('hidden');
+    }
+  });
+</script>
