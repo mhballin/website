@@ -285,4 +285,110 @@ export const projects: Project[] = [
     ],
     fullWidthImages: [0, 2],
   },
+  {
+    id: "project-8",
+    title: "Abstract Motion Graphics Series",
+    description: `
+      Explored generative design principles through motion graphics, 
+      creating fluid, abstract animations inspired by natural phenomena.
+    `.trim(),
+    featured: false,
+    category: "creative",
+    heroImage: "/projects/project-8/hero_8.webp",
+    imageCount: 3,
+    year: "2025",
+    overview: `
+      This project started as an exploration into how code can generate beauty. 
+      Using Processing and p5.js, I created a series of abstract animations that 
+      respond to environmental inputs—gravity, wind, particle interactions.
+    `.trim(),
+    content: `
+      Each piece in the series follows a simple set of rules that lead to complex, 
+      unpredictable outcomes. The result is a mesmerizing blend of chaos and order, 
+      where small parameter tweaks completely transform the visual output.
+    `.trim(),
+    closingText: `
+      This series pushed my thinking on the intersection of art and engineering. 
+      It proved that constraints breed creativity, and that sometimes the most 
+      interesting designs emerge from mathematical systems rather than direct 
+      human intention.
+    `.trim(),
+    impactTitle: false,
+    impact: [
+      "Explored generative design methodologies",
+      "Created shareable animations on social media",
+      "Bridged art and code in a meaningful way"
+    ],
+    fullWidthImages: [0],
+  },
+  {
+    id: "project-9",
+    title: "Typography & Brand Exploration",
+    description: `
+      Designed custom typeface pairings and visual branding systems for 
+      startup concepts, focusing on cohesive design language and modular components.
+    `.trim(),
+    featured: false,
+    category: "creative",
+    heroImage: "/projects/project-9/hero_9.webp",
+    imageCount: 5,
+    year: "2025",
+    overview: `
+      Strong typography is the backbone of any brand. This project involved 
+      researching font pairing theory and creating versatile design systems 
+      that could scale across different mediums—web, print, and environmental design.
+    `.trim(),
+    content: `
+      I explored how different typeface weights, sizes, and color combinations 
+      could convey brand personality. Each iteration was tested across real-world 
+      applications to ensure both aesthetic appeal and functional readability.
+    `.trim(),
+    closingText: `
+      The resulting brand systems proved effective at creating instant recognition 
+      while remaining flexible enough to adapt to different contexts. This project 
+      reinforced that great design doesn't have to be complex—it has to be intentional.
+    `.trim(),
+    impactTitle: "Deliverables",
+    impact: [
+      "3 complete brand identity systems",
+      "Design guidelines and component libraries",
+      "Tested across digital and print applications"
+    ],
+    fullWidthImages: [0, 3],
+  },
+  {
+    id: "project-10",
+    title: "Photography & Visual Storytelling",
+    description: `
+      Captured and curated a portfolio of lifestyle and product photography, 
+      focusing on compelling visual narratives that tell deeper stories.
+    `.trim(),
+    featured: false,
+    category: "creative",
+    heroImage: "/projects/project-10/hero_10.webp",
+    imageCount: 6,
+    year: "2025",
+    overview: `
+      Photography taught me that the best images are those that make viewers 
+      feel something. Through deliberate composition, lighting, and post-processing, 
+      I aimed to transform ordinary moments into powerful visual statements.
+    `.trim(),
+    content: `
+      This collection spans lifestyle shots, product photography, and environmental 
+      portraits. Each image went through careful curation and editing to ensure 
+      consistency in tone, color grading, and overall aesthetic.
+    `.trim(),
+    closingText: `
+      Photography has become my way of seeing the world differently. It's taught me 
+      patience, attention to detail, and the importance of light in storytelling. 
+      These skills directly translate to all my other design work.
+    `.trim(),
+    impactTitle: false,
+    impact: [
+      "Built portfolio of 100+ curated images",
+      "Developed consistent visual style and color grading",
+      "Used photography to enhance product documentation"
+    ],
+    fullWidthImages: [0, 2, 5],
+  },
 ];
