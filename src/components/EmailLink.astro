@@ -5,6 +5,7 @@ import { CONTACT_EMAIL } from "../config";
 <div class="email-link-wrapper relative">
   <button
     class="email-link-button mx-3 group"
+    data-email={CONTACT_EMAIL}
     title="Email"
     aria-label="Email options"
   >
@@ -30,11 +31,15 @@ import { CONTACT_EMAIL } from "../config";
 </div>
 
 <script>
-  const wrapper = document.querySelector('.email-link-wrapper');
-  const button = wrapper?.querySelector('.email-link-button');
-  const tooltip = wrapper?.querySelector('.email-tooltip');
-  const copyBtn = tooltip?.querySelector('.copy-btn');
-  const email = '{CONTACT_EMAIL}';
+  const wrapper = document.querySelector('.email-link-wrapper') as HTMLElement | null;
+  const button = wrapper?.querySelector('.email-link-button') as HTMLElement | null;
+  const tooltip = wrapper?.querySelector('.email-tooltip') as HTMLElement | null;
+  const copyBtn = tooltip?.querySelector('.copy-btn') as HTMLElement | null;
+  const email = button?.dataset.email;
+
+  if (!button || !tooltip || !copyBtn) {
+    console.error('EmailLink component elements not found');
+  }
 
   // Toggle tooltip on button click
   button?.addEventListener('click', () => {
@@ -44,6 +49,10 @@ import { CONTACT_EMAIL } from "../config";
   // Copy email
   copyBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
+    if (!email) {
+      console.error('Email not found');
+      return;
+    }
     await navigator.clipboard.writeText(email);
     const originalText = copyBtn.textContent;
     copyBtn.textContent = '✓ Copied!';
@@ -53,9 +62,16 @@ import { CONTACT_EMAIL } from "../config";
   });
 
   // Close tooltip when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!wrapper?.contains(e.target)) {
+  const handleClickOutside = (e: Event) => {
+    const target = e.target as Node;
+    if (wrapper && !wrapper.contains(target)) {
       tooltip?.classList.add('hidden');
     }
+  };
+  document.addEventListener('click', handleClickOutside);
+
+  // Cleanup event listener on page unload to prevent memory leaks
+  window.addEventListener('beforeunload', () => {
+    document.removeEventListener('click', handleClickOutside);
   });
 </script>
