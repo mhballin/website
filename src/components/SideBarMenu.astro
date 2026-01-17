@@ -10,44 +10,56 @@ const activeClass = "bg-base-300"; // For primary color replace with `active` cl
     <li><a class="py-3 text-base" id="cv" href="/cv">CV</a></li>
     <li>
         <!--@email_off-->
-        <div class="sidebar-contact-menu relative py-0">
-            <button
-                class="sidebar-contact-btn py-3 text-base w-full text-left"
+        <details class="sidebar-contact-menu relative py-0">
+            <summary
+                class="sidebar-contact-btn py-3 text-base w-full text-left list-none cursor-pointer"
                 title="Contact"
                 aria-label="Contact menu"
             >
                 Contact
-            </button>
+            </summary>
 
-            <!-- Dropdown menu -->
-            <div class="sidebar-contact-dropdown hidden absolute bottom-full mb-2 left-0 bg-base-200 rounded-lg shadow-lg overflow-hidden min-w-max z-50">
-                <!-- Email option -->
-                <div class="border-b border-base-300 last:border-b-0">
-                    <button
-                        class="sidebar-contact-email-btn w-full px-4 py-3 hover:bg-base-300 transition-colors text-left flex items-center gap-3"
-                        title="Email"
+            <div class="sidebar-contact-dropdown absolute top-full mt-2 left-0 bg-base-200 rounded-lg shadow-lg overflow-hidden min-w-max z-50">
+                <button
+                    type="button"
+                    class="w-full px-4 py-3 hover:bg-base-300 transition-colors text-left flex items-center gap-3 block border-b border-base-300 last:border-b-0"
+                    data-copy-email={CONTACT_EMAIL}
+                    title="Copy email"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        style="fill: currentColor;"
+                    >
+                        <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z" />
+                    </svg>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium">Email</span>
+                        <span class="text-xs text-gray-500">{CONTACT_EMAIL}</span>
+                    </div>
+                    <span
+                        class="ml-auto inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs text-gray-600"
+                        aria-label="Copy email"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="18"
+                            width="14"
+                            height="14"
                             viewBox="0 0 24 24"
                             style="fill: currentColor;"
                         >
-                            <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z" />
+                            <path d="M16 1H4c-1.103 0-2 .897-2 2v14h2V3h12V1zm3 4H8c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h11c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm0 16H8V7h11v14z" />
                         </svg>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-medium">Email</span>
-                            <span class="text-xs text-gray-500" data-email-display></span>
-                        </div>
-                    </button>
-                </div>
+                        <span data-copy-label>Copy</span>
+                    </span>
+                </button>
 
-                <!-- LinkedIn option -->
                 <a
                     href="https://www.linkedin.com/in/mike-ballin/"
                     target="_blank"
-                    class="sidebar-contact-linkedin-btn w-full px-4 py-3 hover:bg-base-300 transition-colors text-left flex items-center gap-3 block"
+                    class="w-full px-4 py-3 hover:bg-base-300 transition-colors text-left flex items-center gap-3 block"
                     title="LinkedIn"
                 >
                     <svg
@@ -68,78 +80,51 @@ const activeClass = "bg-base-300"; // For primary color replace with `active` cl
                     </div>
                 </a>
             </div>
-        </div>
+        </details>
         <!--@email_on-->
     </li>
 </ul>
 
-<script define:vars={{ sideBarActiveItemID: sideBarActiveItemID, activeClass: activeClass, contactEmail: CONTACT_EMAIL }}>
+<script define:vars={{ sideBarActiveItemID: sideBarActiveItemID, activeClass: activeClass }}>
 const activeItemElem = document.getElementById(sideBarActiveItemID);
-activeItemElem && activeItemElem.classList.add(activeClass);
-
-// Contact menu functionality
-const wrapper = document.querySelector('.sidebar-contact-menu');
-const button = wrapper?.querySelector('.sidebar-contact-btn');
-const dropdown = wrapper?.querySelector('.sidebar-contact-dropdown');
-const emailBtn = wrapper?.querySelector('.sidebar-contact-email-btn');
-const emailDisplay = wrapper?.querySelector('[data-email-display]');
-
-const email = contactEmail;
-
-// Set email display
-if (emailDisplay) {
-    emailDisplay.textContent = email;
+if (activeItemElem) {
+    activeItemElem.classList.add(activeClass);
 }
+</script>
 
-// Toggle dropdown
-button?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = !dropdown?.classList.contains('hidden');
-    if (isOpen) {
-        dropdown?.classList.add('hidden');
-    } else {
-        dropdown?.classList.remove('hidden');
-    }
-});
+<script is:inline>
+document.addEventListener('click', async (event) => {
+    const target = event.target instanceof Element
+        ? event.target.closest('[data-copy-email]')
+        : null;
 
-// Handle email button click
-const performCopy = async () => {
+    if (!target) return;
+
+    const email = target.getAttribute('data-copy-email');
+    if (!email) return;
+
     try {
         await navigator.clipboard.writeText(email);
-        const originalHTML = emailBtn?.innerHTML;
-        if (emailBtn) {
-            emailBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: currentColor;"><path d="M10 15.586L6.707 12.293c-.391-.391-1.023-.391-1.414 0-.391.391-.391 1.023 0 1.414l4 4c.391.391 1.023.391 1.414 0l10-10c.391-.391.391-1.023 0-1.414-.391-.391-1.023-.391-1.414 0L10 15.586z"/></svg> <span>Copied!</span>';
+        const label = target.querySelector('[data-copy-label]');
+        if (label) {
+            const original = label.textContent;
+            label.textContent = 'Copied';
             setTimeout(() => {
-                emailBtn.innerHTML = originalHTML;
-            }, 2000);
+                label.textContent = original ?? 'Copy';
+            }, 1500);
         }
-    } catch (err) {
-        console.error('Failed to copy email:', err);
-    }
-};
-
-emailBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-        performCopy();
-    } else {
-        window.location.href = `mailto:${email}`;
-    }
-    dropdown?.classList.add('hidden');
-});
-
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-    if (!wrapper?.contains(e.target as Node)) {
-        dropdown?.classList.add('hidden');
+    } catch {
+        // no-op
     }
 });
 
-// Close dropdown when clicking a link
-wrapper?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        dropdown?.classList.add('hidden');
-    });
+// Close details when clicking outside
+document.addEventListener('click', (event) => {
+    const details = document.querySelector('.sidebar-contact-menu');
+    const target = event.target instanceof Element ? event.target : null;
+    
+    if (details && !details.contains(target)) {
+        details.open = false;
+    }
 });
 </script>
