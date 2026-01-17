@@ -1,6 +1,6 @@
 ---
 import { CONTACT_EMAIL } from "../config";
-import ContactMenu from "./ContactMenu.astro";
+import ContactMenu from "./ContactMenu.tsx";
 
 export interface Props {
   sideBarActiveItemID: string;
@@ -15,7 +15,7 @@ const { sideBarActiveItemID } = Astro.props;
     <li><a class="py-3 text-base" id="cv" href="/cv">CV</a></li>
     <li>
         <!--@email_off-->
-        <ContactMenu email={CONTACT_EMAIL} />
+        <ContactMenu email={CONTACT_EMAIL} variant="sidebar" client:load />
         <!--@email_on-->
     </li>
 </ul>
@@ -35,8 +35,8 @@ const { sideBarActiveItemID } = Astro.props;
   }
 
   function cleanupActiveMenuItem() {
-    // Remove bg-base-300 from all menu items
-    const menuItems = document.querySelectorAll('ul.menu a');
+    // Remove bg-base-300 from all menu items (anchors, buttons, and menu triggers)
+    const menuItems = document.querySelectorAll('ul.menu a, ul.menu button, ul.menu [data-menu-trigger]');
     menuItems.forEach(item => item.classList.remove('bg-base-300'));
   }
 
