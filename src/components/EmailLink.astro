@@ -7,7 +7,7 @@ import { CONTACT_EMAIL } from "../config";
     class="email-link-button mx-3 relative group"
     data-email={CONTACT_EMAIL}
     title="Email"
-    aria-label="Email"
+    aria-label="Open email options for copying or sending"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,17 +22,17 @@ import { CONTACT_EMAIL } from "../config";
   </button>
 
   <!-- Expanded dropdown view -->
-  <div class="email-expanded hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-base-200 rounded-lg shadow-2xl overflow-visible min-w-max p-4 flex flex-col items-center gap-3 z-50">
-    <span class="text-sm font-medium" data-email-text></span>
+  <div class="email-expanded hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-base-200 rounded-lg shadow-2xl overflow-visible w-48 p-2 flex flex-col items-center gap-2 z-50">
+    <span class="text-xs font-medium" data-email-text></span>
     <div class="flex gap-2">
       <button
-        class="email-copy-btn btn btn-sm btn-ghost"
+        class="email-copy-btn btn btn-xs btn-ghost"
         title="Copy email"
       >
         Copy
       </button>
       <a
-        class="email-send-btn btn btn-sm btn-ghost"
+        class="email-send-btn btn btn-xs btn-ghost"
         title="Send email"
       >
         Send
@@ -71,18 +71,14 @@ import { CONTACT_EMAIL } from "../config";
       }
     } catch (err) {
       console.error('Failed to copy email:', err);
+      alert('Failed to copy email. Please try again.');
     }
   };
 
   // Toggle dropdown on button click
   button?.addEventListener('click', (e) => {
     e.stopPropagation();
-    const isOpen = !expandedView?.classList.contains('hidden');
-    if (isOpen) {
-      expandedView?.classList.add('hidden');
-    } else {
-      expandedView?.classList.remove('hidden');
-    }
+    expandedView?.classList.toggle('hidden');
   });
 
   // Copy button click
@@ -92,9 +88,16 @@ import { CONTACT_EMAIL } from "../config";
   });
 
   // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!wrapper?.contains(e.target as Node)) {
+  const handleClickOutside = (e) => {
+    if (!wrapper?.contains(e.target)) {
       expandedView?.classList.add('hidden');
     }
+  };
+
+  document.addEventListener('click', handleClickOutside);
+
+  // Cleanup event listener when component is destroyed
+  window.addEventListener('beforeunload', () => {
+    document.removeEventListener('click', handleClickOutside);
   });
 </script>
