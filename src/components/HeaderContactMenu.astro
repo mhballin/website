@@ -2,7 +2,7 @@
 import { CONTACT_EMAIL } from "../config";
 ---
 
-<div class="header-contact-menu relative">
+<div class="header-contact-menu relative" data-email={CONTACT_EMAIL}>
   <button
     class="header-contact-btn relative group"
     title="Contact"
@@ -83,7 +83,7 @@ import { CONTACT_EMAIL } from "../config";
   const emailBtn = wrapper?.querySelector('.header-contact-email-btn');
   const emailDisplay = wrapper?.querySelector('[data-email-display]');
 
-  const email = '{CONTACT_EMAIL}';
+  const email = wrapper?.dataset.email || '';
 
   // Set email display
   if (emailDisplay) {
@@ -131,16 +131,22 @@ import { CONTACT_EMAIL } from "../config";
   });
 
   // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
+  const handleClickOutside = (e) => {
     if (!wrapper?.contains(e.target as Node)) {
       dropdown?.classList.add('hidden');
     }
-  });
+  };
+  document.addEventListener('click', handleClickOutside);
 
   // Close dropdown when clicking a link
   wrapper?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       dropdown?.classList.add('hidden');
     });
+  });
+
+  // Cleanup on navigation
+  document.addEventListener('astro:before-swap', () => {
+    document.removeEventListener('click', handleClickOutside);
   });
 </script>

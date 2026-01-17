@@ -147,7 +147,10 @@ export class ContactMenuManager {
       this.openMailto();
     }
 
-    this.close();
+    // Delay the close by 2 seconds to show the success message
+    setTimeout(() => {
+      this.close();
+    }, 2000);
   }
 
   private showCopySuccess(): void {

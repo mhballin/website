@@ -37,5 +37,13 @@ const {
       </div>
       {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
     </div>
+    <script>
+      document.addEventListener('astro:before-swap', () => {
+        const drawerCheckbox = document.getElementById('my-drawer') as HTMLInputElement;
+        if (drawerCheckbox) {
+          drawerCheckbox.checked = false;
+        }
+      });
+    </script>
   </body>
 </html>

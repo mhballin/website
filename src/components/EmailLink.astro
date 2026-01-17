@@ -96,8 +96,8 @@ import { CONTACT_EMAIL } from "../config";
 
   document.addEventListener('click', handleClickOutside);
 
-  // Cleanup event listener when component is destroyed
-  window.addEventListener('beforeunload', () => {
+  // Cleanup event listener on navigation
+  document.addEventListener('astro:before-swap', () => {
     document.removeEventListener('click', handleClickOutside);
   });
 </script>
