@@ -4,10 +4,9 @@ import { CONTACT_EMAIL } from "../config";
 
 <div class="email-link-wrapper relative">
   <button
-    class="email-link-button mx-3 relative group"
-    data-email={CONTACT_EMAIL}
+    class="email-link-button mx-3 group"
     title="Email"
-    aria-label="Open email options for copying or sending"
+    aria-label="Email options"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,22 +20,11 @@ import { CONTACT_EMAIL } from "../config";
     </svg>
   </button>
 
-  <!-- Expanded dropdown view -->
-  <div class="email-expanded hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-base-200 rounded-lg shadow-2xl overflow-visible w-48 p-2 flex flex-col items-center gap-2 z-50">
-    <span class="text-xs font-medium" data-email-text></span>
+  <div class="email-tooltip hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-base-200 rounded-lg shadow-lg p-3 w-48 flex flex-col items-center gap-2 z-50">
+    <span class="text-xs font-medium">{CONTACT_EMAIL}</span>
     <div class="flex gap-2">
-      <button
-        class="email-copy-btn btn btn-xs btn-ghost"
-        title="Copy email"
-      >
-        Copy
-      </button>
-      <a
-        class="email-send-btn btn btn-xs btn-ghost"
-        title="Send email"
-      >
-        Send
-      </a>
+      <button class="copy-btn btn btn-xs btn-ghost">Copy</button>
+      <a href="mailto:{CONTACT_EMAIL}" class="btn btn-xs btn-ghost">Send</a>
     </div>
   </div>
 </div>
@@ -44,60 +32,30 @@ import { CONTACT_EMAIL } from "../config";
 <script>
   const wrapper = document.querySelector('.email-link-wrapper');
   const button = wrapper?.querySelector('.email-link-button');
-  const expandedView = wrapper?.querySelector('.email-expanded');
-  const emailText = expandedView?.querySelector('[data-email-text]');
-  const copyBtn = expandedView?.querySelector('.email-copy-btn');
-  const sendBtn = expandedView?.querySelector('.email-send-btn');
-  const email = button?.dataset.email;
+  const tooltip = wrapper?.querySelector('.email-tooltip');
+  const copyBtn = tooltip?.querySelector('.copy-btn');
+  const email = '{CONTACT_EMAIL}';
 
-  if (!email) {
-    console.error('Email not found in EmailLink component');
-  }
-
-  // Set email address and send link
-  if (emailText) emailText.textContent = email;
-  if (sendBtn) sendBtn.href = `mailto:${email}`;
-
-  // Handle copy action
-  const performCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      const originalText = copyBtn?.textContent;
-      if (copyBtn) {
-        copyBtn.textContent = '✓ Copied!';
-        setTimeout(() => {
-          copyBtn.textContent = originalText;
-        }, 2000);
-      }
-    } catch (err) {
-      console.error('Failed to copy email:', err);
-      alert('Failed to copy email. Please try again.');
-    }
-  };
-
-  // Toggle dropdown on button click
-  button?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    expandedView?.classList.toggle('hidden');
+  // Toggle tooltip on button click
+  button?.addEventListener('click', () => {
+    tooltip?.classList.toggle('hidden');
   });
 
-  // Copy button click
-  copyBtn?.addEventListener('click', (e) => {
+  // Copy email
+  copyBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
-    performCopy();
+    await navigator.clipboard.writeText(email);
+    const originalText = copyBtn.textContent;
+    copyBtn.textContent = '✓ Copied!';
+    setTimeout(() => {
+      copyBtn.textContent = originalText;
+    }, 2000);
   });
 
-  // Close dropdown when clicking outside
-  const handleClickOutside = (e) => {
+  // Close tooltip when clicking outside
+  document.addEventListener('click', (e) => {
     if (!wrapper?.contains(e.target)) {
-      expandedView?.classList.add('hidden');
+      tooltip?.classList.add('hidden');
     }
-  };
-
-  document.addEventListener('click', handleClickOutside);
-
-  // Cleanup event listener when component is destroyed
-  window.addEventListener('beforeunload', () => {
-    document.removeEventListener('click', handleClickOutside);
   });
 </script>
