@@ -34,9 +34,18 @@ const { sideBarActiveItemID } = Astro.props;
     }
   }
 
+  function cleanupActiveMenuItem() {
+    // Remove bg-base-300 from all menu items
+    const menuItems = document.querySelectorAll('ul.menu a');
+    menuItems.forEach(item => item.classList.remove('bg-base-300'));
+  }
+
   // Set active item on initial load
   setActiveMenuItem();
 
-  // Re-apply on Astro page transitions
+  // Cleanup before navigation
+  document.addEventListener('astro:before-swap', cleanupActiveMenuItem);
+
+  // Re-apply after navigation
   document.addEventListener('astro:page-load', setActiveMenuItem);
 </script>

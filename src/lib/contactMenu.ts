@@ -2,16 +2,25 @@ export interface ContactMenuOptions {
   email: string;
 }
 
+// Track manager instances to prevent duplicates and enable cleanup
+const instanceMap = new WeakMap<HTMLElement, ContactMenuManager>();
+
 export class ContactMenuManager {
   private wrapper: HTMLElement;
   private button: HTMLButtonElement;
   private dropdown: HTMLElement;
   private emailBtn: HTMLButtonElement;
   private emailDisplay: HTMLElement;
+  private linkedInLink: HTMLAnchorElement | null = null;
   private email: string;
   private isOpen = false;
   private clickOutsideHandler: ((event: MouseEvent) => void) | null = null;
   private keyboardHandler: ((event: KeyboardEvent) => void) | null = null;
+
+  // Store bound method references for cleanup
+  private boundHandleToggle: (event: MouseEvent) => void;
+  private boundHandleEmailClick: (event: MouseEvent) => Promise<void>;
+  private boundHandleLinkedInClick: () => void;
 
   constructor(wrapper: HTMLElement, options: ContactMenuOptions) {
     this.wrapper = wrapper;
@@ -30,8 +39,27 @@ export class ContactMenuManager {
     this.dropdown = dropdown;
     this.emailBtn = emailBtn;
     this.emailDisplay = emailDisplay;
+    this.linkedInLink = wrapper.querySelector<HTMLAnchorElement>('.sidebar-contact-linkedin-btn');
+
+    // Create bound references for cleanup
+    this.boundHandleToggle = this.handleToggle.bind(this);
+    this.boundHandleEmailClick = this.handleEmailClick.bind(this);
+    this.boundHandleLinkedInClick = this.close.bind(this);
 
     this.init();
+  }
+
+  static getInstance(wrapper: HTMLElement, options: ContactMenuOptions): ContactMenuManager {
+    // Check if instance exists and destroy it first
+    const existingInstance = instanceMap.get(wrapper);
+    if (existingInstance) {
+      existingInstance.destroy();
+    }
+
+    // Create new instance and track it
+    const instance = new ContactMenuManager(wrapper, options);
+    instanceMap.set(wrapper, instance);
+    return instance;
   }
 
   private init(): void {
@@ -44,14 +72,13 @@ export class ContactMenuManager {
     this.dropdown.setAttribute('role', 'menu');
     this.dropdown.setAttribute('aria-label', 'Contact options');
 
-    // Attach event listeners
-    this.button.addEventListener('click', this.handleToggle.bind(this));
-    this.emailBtn.addEventListener('click', this.handleEmailClick.bind(this));
+    // Attach event listeners using bound references
+    this.button.addEventListener('click', this.boundHandleToggle);
+    this.emailBtn.addEventListener('click', this.boundHandleEmailClick);
 
     // Handle LinkedIn link
-    const linkedInLink = this.wrapper.querySelector<HTMLAnchorElement>('.sidebar-contact-linkedin-btn');
-    if (linkedInLink) {
-      linkedInLink.addEventListener('click', () => this.close());
+    if (this.linkedInLink) {
+      this.linkedInLink.addEventListener('click', this.boundHandleLinkedInClick);
     }
   }
 
@@ -146,6 +173,16 @@ export class ContactMenuManager {
 
   public destroy(): void {
     this.close();
-    // Remove all event listeners if needed for cleanup
+    
+    // Remove all event listeners using bound references
+    this.button.removeEventListener('click', this.boundHandleToggle);
+    this.emailBtn.removeEventListener('click', this.boundHandleEmailClick);
+    
+    if (this.linkedInLink) {
+      this.linkedInLink.removeEventListener('click', this.boundHandleLinkedInClick);
+    }
+    
+    // Remove from instance map
+    instanceMap.delete(this.wrapper);
   }
 }

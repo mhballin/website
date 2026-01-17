@@ -68,6 +68,8 @@ const { email } = Astro.props;
 <script>
   import { ContactMenuManager } from '../lib/contactMenu';
 
+  let managers: ContactMenuManager[] = [];
+
   function initContactMenus() {
     const menuElements = document.querySelectorAll<HTMLElement>('.sidebar-contact-menu');
     
@@ -76,16 +78,25 @@ const { email } = Astro.props;
       if (!email) return;
 
       try {
-        new ContactMenuManager(wrapper, { email });
+        const manager = ContactMenuManager.getInstance(wrapper, { email });
+        managers.push(manager);
       } catch (error) {
         console.error('Failed to initialize contact menu:', error);
       }
     });
   }
 
+  function cleanupContactMenus() {
+    managers.forEach(manager => manager.destroy());
+    managers = [];
+  }
+
   // Initialize on load
   initContactMenus();
 
-  // Re-initialize on Astro page transitions
+  // Cleanup before navigation
+  document.addEventListener('astro:before-swap', cleanupContactMenus);
+
+  // Re-initialize after navigation
   document.addEventListener('astro:page-load', initContactMenus);
 </script>
