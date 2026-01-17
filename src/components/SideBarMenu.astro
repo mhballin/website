@@ -1,13 +1,13 @@
 ---
 import { CONTACT_EMAIL } from "../config";
 const { sideBarActiveItemID } = Astro.props;
-const activeClass = "bg-base-300"; // For primary color replace with `active` class
+const activeClass = "bg-base-300 text-base-content"; // For primary color replace with `active` class
 ---
 
 <ul class="menu grow shrink menu-md overflow-y-auto">
-    <li><a class="py-3 text-base" id="home" href="/">Home</a></li>
-    <li><a class="py-3 text-base" id="work" href="/work">Projects & Work</a></li>
-    <li><a class="py-3 text-base" id="cv" href="/cv">CV</a></li>
+    <li><a class="py-3 px-3 text-base font-medium text-base-content/80 rounded-lg hover:bg-base-200 hover:text-base-content transition-colors" id="home" href="/">Home</a></li>
+    <li><a class="py-3 px-3 text-base font-medium text-base-content/80 rounded-lg hover:bg-base-200 hover:text-base-content transition-colors" id="work" href="/work">Projects & Work</a></li>
+    <li><a class="py-3 px-3 text-base font-medium text-base-content/80 rounded-lg hover:bg-base-200 hover:text-base-content transition-colors" id="cv" href="/cv">CV</a></li>
     <li>
         <!--@email_off-->
         <details class="sidebar-contact-menu relative py-0">
