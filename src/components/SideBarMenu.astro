@@ -20,7 +20,7 @@ const activeClass = "bg-base-300"; // For primary color replace with `active` cl
             </button>
 
             <!-- Dropdown menu -->
-            <div class="sidebar-contact-dropdown hidden absolute bottom-full mb-2 left-0 bg-base-200 rounded-lg shadow-lg overflow-hidden min-w-max z-50">
+            <div class="sidebar-contact-dropdown hidden absolute top-full mt-2 left-0 bg-base-200 rounded-lg shadow-lg overflow-hidden min-w-max z-50">
                 <!-- Email option -->
                 <div class="border-b border-base-300 last:border-b-0">
                     <button
@@ -74,72 +74,104 @@ const activeClass = "bg-base-300"; // For primary color replace with `active` cl
 </ul>
 
 <script define:vars={{ sideBarActiveItemID: sideBarActiveItemID, activeClass: activeClass, contactEmail: CONTACT_EMAIL }}>
-const activeItemElem = document.getElementById(sideBarActiveItemID);
-activeItemElem && activeItemElem.classList.add(activeClass);
-
-// Contact menu functionality
-const wrapper = document.querySelector('.sidebar-contact-menu');
-const button = wrapper?.querySelector('.sidebar-contact-btn');
-const dropdown = wrapper?.querySelector('.sidebar-contact-dropdown');
-const emailBtn = wrapper?.querySelector('.sidebar-contact-email-btn');
-const emailDisplay = wrapper?.querySelector('[data-email-display]');
-
-const email = contactEmail;
-
-// Set email display
-if (emailDisplay) {
-    emailDisplay.textContent = email;
-}
-
-// Toggle dropdown
-button?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = !dropdown?.classList.contains('hidden');
-    if (isOpen) {
-        dropdown?.classList.add('hidden');
-    } else {
-        dropdown?.classList.remove('hidden');
+  function initializeContactMenu() {
+    // Set active menu item
+    const activeItemElem = document.getElementById(sideBarActiveItemID);
+    if (activeItemElem) {
+      activeItemElem.classList.add(activeClass);
     }
-});
 
-// Handle email button click
-const performCopy = async () => {
-    try {
-        await navigator.clipboard.writeText(email);
-        const originalHTML = emailBtn?.innerHTML;
-        if (emailBtn) {
-            emailBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: currentColor;"><path d="M10 15.586L6.707 12.293c-.391-.391-1.023-.391-1.414 0-.391.391-.391 1.023 0 1.414l4 4c.391.391 1.023.391 1.414 0l10-10c.391-.391.391-1.023 0-1.414-.391-.391-1.023-.391-1.414 0L10 15.586z"/></svg> <span>Copied!</span>';
-            setTimeout(() => {
-                emailBtn.innerHTML = originalHTML;
-            }, 2000);
+    // Contact menu functionality
+    const wrapper = document.querySelector('.sidebar-contact-menu');
+    const button = wrapper ? wrapper.querySelector('.sidebar-contact-btn') : null;
+    const dropdown = wrapper ? wrapper.querySelector('.sidebar-contact-dropdown') : null;
+    const emailBtn = wrapper ? wrapper.querySelector('.sidebar-contact-email-btn') : null;
+    const emailDisplay = wrapper ? wrapper.querySelector('[data-email-display]') : null;
+
+    const email = contactEmail;
+
+    // Set email display
+    if (emailDisplay) {
+      emailDisplay.textContent = email;
+    }
+
+    // Toggle dropdown
+    if (button) {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = dropdown && !dropdown.classList.contains('hidden');
+        if (isOpen) {
+          dropdown.classList.add('hidden');
+        } else {
+          if (dropdown) {
+            dropdown.classList.remove('hidden');
+          }
         }
-    } catch (err) {
+      });
+    }
+
+    // Handle email button click
+    const performCopy = async function() {
+      try {
+        await navigator.clipboard.writeText(email);
+        const originalHTML = emailBtn ? emailBtn.innerHTML : '';
+        if (emailBtn) {
+          emailBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="fill: currentColor;"><path d="M10 15.586L6.707 12.293c-.391-.391-1.023-.391-1.414 0-.391.391-.391 1.023 0 1.414l4 4c.391.391 1.023.391 1.414 0l10-10c.391-.391.391-1.023 0-1.414-.391-.391-1.023-.391-1.414 0L10 15.586z"/></svg> <span>Copied!</span>';
+          setTimeout(function() {
+            if (emailBtn) {
+              emailBtn.innerHTML = originalHTML;
+            }
+          }, 2000);
+        }
+      } catch (err) {
         console.error('Failed to copy email:', err);
-    }
-};
+      }
+    };
 
-emailBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-        performCopy();
-    } else {
-        window.location.href = `mailto:${email}`;
+    if (emailBtn) {
+      emailBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+          performCopy();
+        } else {
+          window.location.href = 'mailto:' + email;
+        }
+        if (dropdown) {
+          dropdown.classList.add('hidden');
+        }
+      });
     }
-    dropdown?.classList.add('hidden');
-});
 
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-    if (!wrapper?.contains(e.target as Node)) {
-        dropdown?.classList.add('hidden');
-    }
-});
-
-// Close dropdown when clicking a link
-wrapper?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        dropdown?.classList.add('hidden');
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (wrapper && !wrapper.contains(e.target)) {
+        if (dropdown) {
+          dropdown.classList.add('hidden');
+        }
+      }
     });
-});
+
+    // Close dropdown when clicking a link
+    if (wrapper) {
+      const links = wrapper.querySelectorAll('a');
+      links.forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (dropdown) {
+            dropdown.classList.add('hidden');
+          }
+        });
+      });
+    }
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeContactMenu);
+  } else {
+    initializeContactMenu();
+  }
+
+  // Re-initialize on ViewTransitions page load
+  document.addEventListener('astro:page-load', initializeContactMenu);
 </script>
