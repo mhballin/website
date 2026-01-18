@@ -3,6 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { projects, type ProjectCategory } from "../../../data/projects";
 import { Image } from "astro:assets";
 import ImageModal from "../../../components/ImageModal.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
 
 export function getStaticPaths() {
   return projects.flatMap((project) =>
@@ -50,36 +51,13 @@ const categoryLabels: Record<ProjectCategory, string> = {
   image={project.heroImage}
   sideBarActiveItemID="work"
 >
-  <!-- Back navigation with breadcrumb -->
-  <div class="mb-8">
-    <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
-      <a href="/work" class="text-primary hover:underline">Work</a>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-      <a href={`/work/${category}`} class="text-primary hover:underline">
-        {categoryLabels[category]}
-      </a>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-      <span>{project.title}</span>
-    </div>
-    <a
-      href={`/work/${category}`}
-      class="text-primary hover:underline inline-flex items-center gap-2"
-    >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M15 19l-7-7 7-7"
-        ></path>
-      </svg>
-      Back to {categoryLabels[category]}
-    </a>
-  </div>
+  <Breadcrumb
+    items={[
+      { href: "/work", label: "Work" },
+      { href: `/work/${category}`, label: categoryLabels[category] },
+      { label: project.title }
+    ]}
+  />
 
   <!-- Title & Metadata -->
   <div class="max-w-3xl mx-auto mb-16">

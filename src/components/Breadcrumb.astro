@@ -1,0 +1,33 @@
+---
+// filepath: src/components/Breadcrumb.astro
+export interface Crumb { href?: string; label: string; }
+export interface Props { items: Crumb[]; }
+const { items } = Astro.props;
+---
+
+<div class="mb-8">
+  <nav aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 text-sm text-gray-600 mb-4">
+      {items.map((item, i) => (
+        <>
+          {item.href ? (
+            <li>
+              <a href={item.href} class="text-primary hover:underline">{item.label}</a>
+            </li>
+          ) : (
+            <li>
+              <span class="font-semibold">{item.label}</span>
+            </li>
+          )}
+          {i < items.length - 1 && (
+            <li>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </li>
+          )}
+        </>
+      ))}
+    </ol>
+  </nav>
+</div>
