@@ -17,8 +17,14 @@ export interface Project {
   impactTitle?: string | false;  // Custom heading for impact section, false to hide, defaults to "Impact"
   year?: string;
   role?: string;
+  team?: string[];
+  timeline?: string;
+  liveUrl?: string;
+  repoUrl?: string;
+  process?: string[]; // Key process steps (research → wireframes → prototype → implementation)
+  deliverables?: string[]; // e.g., Figma files, prototype, deployed site
   fullWidthImages?: number[];  // Indices of images to display full-width (rest in 2-column)
-}
+} 
 
 export const projects: Project[] = [
   {
@@ -262,68 +268,70 @@ export const projects: Project[] = [
     imageCount: 4,
     year: "2026",
     overview: `
-      Wearable tech enthusiasts often want to combine their favorite watch with fitness tracking bands. 
-      I saw an opportunity to create a clean, functional adapter that lets a Casio watch sit comfortably 
-      on a Whoop strap without compromising either device's integrity.
+      Designed and 3D-printed a custom-fitting adapter that allows a Casio watch 
+      to integrate seamlessly with a Whoop band, allowing Whoop users to not need 
+      to wear another watch and be able to tell the time.
     `.trim(),
     content: `
-      The design required precise measurements of both the Casio case lugs and the Whoop band attachment points. 
-      Using Fusion 360, I modeled a minimal frame that sandwiches the watch case between two retention clips, 
-      allowing the assembly to slide onto the Whoop band's velcro surface. The 3D-printed material (nylon reinforced) 
-      provides enough rigidity to hold the watch secure while remaining lightweight.
+     The design required precise measurements of both the Casio case lugs and the Whoop 
+     band attachment points. Using Fusion 360, I modeled 2 different attachment frames 
+     for the connection between the Casio and Whoop. Using the Whoop's battery charging s
+     lot, the watch slides on and off in an elegant, seamless way. The 3D-printed part is 
+     used to rapidly iterate and will eventually be made out of metal. 
     `.trim(),
     closingText: `
-      After several iterations to dial in the fit tolerance, the final design keeps the watch visible and accessible 
-      while distributing weight evenly across the wrist. It's a small project that solves a niche problem—proof that 
-      thoughtful design doesn't require complexity.
+      After several iterations to dial in the fit tolerance and durability, 
+      the part is going through final R&D stages before being 3D-printed in Metal. 
     `.trim(),
     impactTitle: false,
     impact: [
-      "Seamless integration of Casio watch with Whoop band",
-      "Lightweight 3D-printed solution with minimal material waste",
+      "Integrated Casio watch with Whoop band",
+      "Lightweight solution with minimal height increase off the wrist",
       "Clean aesthetics that don't compromise device visibility"
     ],
     fullWidthImages: [0, 2],
   },
   {
     id: "project-8",
-    title: "Abstract Motion Graphics Series",
+    title: "Website Design",
     description: `
-      Explored generative design principles through motion graphics, 
-      creating fluid, abstract animations inspired by natural phenomena.
+      Designed an interactive portfolio site featuring generative animations and lightweight, accessible interactions.
     `.trim(),
     featured: false,
     category: "creative",
     heroImage: "/projects/project-8/hero_8.webp",
-    imageCount: 3,
-    year: "2025",
+    imageCount: 4,
+    year: "2023-Present",
     overview: `
-      This project started as an exploration into how code can generate beauty. 
-      Using Processing and p5.js, I created a series of abstract animations that 
-      respond to environmental inputs—gravity, wind, particle interactions.
+      My start in web design began when I applied for a job and received a reply asking 
+      for a website to view my portfolio. Not having one, I quickly whipped something 
+      up on Squarespace, and luckily got the job. Since then, although not a main 
+      focus of mine, I've enjoyed designing and implementing websites, whether for 
+      my business, my personal portfolio (this one), or for friends and family. 
+      I started out using Squarespace, Wix, and other CMS's, but have more recently 
+      been coding websites from scratch, writing in Astro, CSS, and HTML. 
     `.trim(),
     content: `
-      Each piece in the series follows a simple set of rules that lead to complex, 
-      unpredictable outcomes. The result is a mesmerizing blend of chaos and order, 
-      where small parameter tweaks completely transform the visual output.
+      Each piece in the series follows a simple set of rules that lead to complex, unpredictable outcomes. For the website,
+      I focused on responsive layouts, animation performance (Lottie + optimized canvases), and accessible controls. Assets are lazy-loaded,
+      and critical CSS is inlined to improve first paint. I used a small component library and documented design tokens for reuse.
     `.trim(),
     closingText: `
-      This series pushed my thinking on the intersection of art and engineering. 
-      It proved that constraints breed creativity, and that sometimes the most 
-      interesting designs emerge from mathematical systems rather than direct 
-      human intention.
+      Designing websites has taught me the importance of performance optimization,
+      accessibility, and user-centric design. These principles not only enhance the user experience
+      but also ensure that the site is inclusive and efficient across various devices and network conditions.
     `.trim(),
     impactTitle: false,
     impact: [
-      "Explored generative design methodologies",
-      "Created shareable animations on social media",
-      "Bridged art and code in a meaningful way"
+      "Learned how to code websites from scratch",
+      "Intergrated custmer feedback into design iterations",
+      "Designed simple clean websites focused on user experience"
     ],
-    fullWidthImages: [0],
+    fullWidthImages: [0, 1,2,3,4],
   },
   {
     id: "project-9",
-    title: "Typography & Brand Exploration",
+    title: "Photography",
     description: `
       Designed custom typeface pairings and visual branding systems for 
       startup concepts, focusing on cohesive design language and modular components.
@@ -358,7 +366,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-10",
-    title: "Photography & Visual Storytelling",
+    title: "Photography Books",
     description: `
       Captured and curated a portfolio of lifestyle and product photography, 
       focusing on compelling visual narratives that tell deeper stories.
