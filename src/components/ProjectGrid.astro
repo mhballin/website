@@ -13,9 +13,10 @@ const { projects, category } = Astro.props;
 <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
   {
     projects.map((project) => {
+      const idOrSlug = project.slug ?? project.id;
       const href = category 
-        ? `/work/${category}/${project.id}`
-        : `/work/${project.category}/${project.id}`;
+        ? `/work/${category}/${idOrSlug}`
+        : `/work/${project.category}/${idOrSlug}`;
       
       return (
         <a

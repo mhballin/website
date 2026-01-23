@@ -2,6 +2,7 @@ export type ProjectCategory = "blueprint" | "making" | "creative";
 
 export interface Project {
   id: string;
+  slug?: string;
   title: string;
   description: string;
   featured: boolean;
@@ -29,6 +30,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "project-1",
+    slug: "3d-printed-composite-surfboards",
     title: "3D-Printed Composite Surfboards",
     description: `
       Engineered innovative 3D-printed core system for composite surfboards. 
@@ -69,6 +71,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-2",
+    slug: "surfboard-nightlight",
     title: "Surfboard Nightlight",
     description: `
       Created a nightlight for my brother who needed a 
@@ -103,6 +106,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-3",
+    slug: "paddleboard-waterbottle-holder",
     title: "Paddleboard Waterbottle Holder",
     description: `
       A friend of mine and I got into prone paddling. He had bought a water bottle 
@@ -227,31 +231,38 @@ export const projects: Project[] = [
     category: "making",
     heroImage: "/projects/project-6/hero_6.webp",
     imageCount: 5,
-    year: "2024 - Present",
+    year: "2019 - Present",
     overview: `
-      Building surfboards from scratch requires understanding the interplay between 
-      foam density, resin systems, and fiberglass layup schedules. I started exploring 
-      EPS (expanded polystyrene) cores paired with epoxy resin to create lighter, 
-      more durable boards than traditional polyester systems.
+      I got into board building while home from college, slightly bored and
+      wanting a new surfboard. Since the materials were cheaper to buy 
+      than a used board, I ordered everything and dove right in. Not knowing 
+      a single thing about shaping, I read and watched as many videos as 
+      possible to better understand. That board came out ok (I overshaped 
+      it, chasing down uneven sections) and is still a part of my quiver 7 years later. 
     `.trim(),
     content: `
-      The process begins with shaping the EPS blank to create the hydrodynamic profile. 
-      I then apply multiple fiberglass layers with varying fiber orientations—woven cloth 
-      for torsional stiffness, uni-directional for bending resistance. The epoxy resin 
-      provides superior adhesion and durability compared to polyester, while the EPS core 
-      delivers excellent strength-to-weight characteristics.
+      Each board is a learning opportunity, whether I'm trying out a new design, 
+      fin placement, or making something fun for a friend. I've had the opportunity 
+      to watch and learn from some master board builders, who have helped me hone 
+      my craft and find my own style of board building. All the boards I build are 
+      made by me from start to finish, from the initial foam shaping to the final 
+      sanding. Having my hands on every aspect of the process allows me to build a more 
+      complete board and improve my skills as a builder. 
     `.trim(),
     closingText: `
-      Each board is a learning opportunity. Testing different foam densities, resin systems, 
-      and layup patterns has revealed how small changes in materials compound into measurable 
-      performance differences. The result is a collection of custom boards refined through 
-      hands-on testing and iteration.
+      I've now shaped many boards, but I'm still practicing and honing my craft. 
+      Board building is all about your eye-hand relationship. Often, you know what 
+      you are looking to build, but translating that into the physical world is 
+      the challenge. The more boards I build the better I get at this skill. Ill often 
+      make mistakes (or happy accidents) along the way but each one teaches me something 
+      new and gives the board unique character.
+      Board building is my happy place; it's where I am in my element. 
+      Although challenging at times, nothing beats the smile you get from giving a 
+      board to a friend or dropping into a wave on a board you made. 
     `.trim(),
-    impactTitle: "Key Learnings",
+    impactTitle: false,
     impact: [
-      "Mastered EPS blank shaping and glass-to-resin ratio optimization",
-      "Improved board durability by 40% using epoxy vs. polyester systems",
-      "Developed repeatable processes for consistent quality across multiple builds"
+      "Build beautiful custom surfboards from start to finish",
     ],
     fullWidthImages: [0, 3],
   },

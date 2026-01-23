@@ -16,11 +16,13 @@ import type { Project } from "../data/projects";
     style="margin-left: calc(var(--prose-margin, 0) * -1); padding-left: var(--prose-margin, 0); width: 100vw; max-width: 100%;"
   >
     {
-      projects.map((project) => (
-        <a
-          href={`/work/${project.category}/${project.id}`}
-          class="flex-shrink-0 w-80 h-80 min-w-80 min-h-80 snap-start rounded-lg overflow-hidden group cursor-pointer"
-        >
+      projects.map((project) => {
+        const idOrSlug = project.slug ?? project.id;
+        return (
+          <a
+            href={`/work/${project.category}/${idOrSlug}`}
+            class="flex-shrink-0 w-80 h-80 min-w-80 min-h-80 snap-start rounded-lg overflow-hidden group cursor-pointer"
+          >
           <div class="relative w-full h-full">
             <Image
               src={project.heroImage}

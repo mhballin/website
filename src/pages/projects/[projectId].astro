@@ -6,10 +6,14 @@ import ImageModal from "../../components/ImageModal.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 
 export function getStaticPaths() {
-  return projects.map((project) => ({
-    params: { projectId: project.id },
-    props: { project },
-  }));
+  return projects.flatMap((project) => {
+    const canonical = project.slug ?? project.id;
+    const ids = project.slug ? [canonical, project.id] : [canonical];
+    return ids.map((projectId) => ({
+      params: { projectId },
+      props: { project },
+    }));
+  });
 }
 
 interface Props {
@@ -17,6 +21,12 @@ interface Props {
 }
 
 const { project } = Astro.props;
+
+const requestedId = Astro.params.projectId;
+const canonical = project.slug ?? project.id;
+if (requestedId !== canonical) {
+  return Astro.redirect(`/projects/${canonical}`, 301);
+}
 
 // Generate meta description from project overview or description
 const metaDescription = project.overview || project.description;
