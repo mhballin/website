@@ -253,7 +253,7 @@ export const projects: Project[] = [
       I've now shaped many boards, but I'm still practicing and honing my craft. 
       Board building is all about your eye-hand relationship. Often, you know what 
       you are looking to build, but translating that into the physical world is 
-      the challenge. The more boards I build the better I get at this skill. Ill often 
+      the challenge. The more boards I build the better I get at this skill. I'll often 
       make mistakes (or happy accidents) along the way but each one teaches me something 
       new and gives the board unique character.
       Board building is my happy place; it's where I am in my element. 
@@ -263,6 +263,8 @@ export const projects: Project[] = [
     impactTitle: false,
     impact: [
       "Build beautiful custom surfboards from start to finish",
+      "Honed craftsmanship through hands-on experience",
+      "Gained deep understanding of board design and performance",
     ],
     fullWidthImages: [0, 3],
   },

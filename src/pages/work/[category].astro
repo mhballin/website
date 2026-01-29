@@ -19,13 +19,6 @@ interface Props {
 const { category } = Astro.props;
 const categoryProjects = projects.filter((p) => p.category === category);
 
-// If this category has only one project, redirect to its project page (301)
-if (categoryProjects.length === 1) {
-  const project = categoryProjects[0];
-  const idOrSlug = project.slug ?? project.id;
-  return Astro.redirect(`/work/${category}/${idOrSlug}`, 301);
-}
-
 const categoryLabels: Record<ProjectCategory, { name: string; description: string }> = {
   blueprint: {
     name: "Blueprint",
