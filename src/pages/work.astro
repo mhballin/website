@@ -21,15 +21,17 @@ const categoryNames = {
   <!-- Category Tiles with Hero Images -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
     {categories.map((cat) => {
-      const project = projects.find(p => p.category === cat);
+      const categoryProjects = projects.filter((p) => p.category === cat);
+      const singleProject = categoryProjects.length === 1 ? categoryProjects[0] : undefined;
+      const href = singleProject ? `/work/${cat}/${singleProject.slug ?? singleProject.id}` : `/work/${cat}`;
       return (
-        <a href={`/work/${cat}`} class="group" aria-label={`View ${categoryNames[cat]} projects`} key={cat}>
+        <a href={href} class="group" aria-label={`View ${categoryNames[cat]} projects`} key={cat}>
           <div class="relative h-64 bg-base-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
-            {project ? (
+            {singleProject ? (
               <>
                 <img 
-                  src={project.heroImage} 
-                  alt={project.title ?? categoryNames[cat]}
+                  src={singleProject.heroImage} 
+                  alt={singleProject.title ?? categoryNames[cat]}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>

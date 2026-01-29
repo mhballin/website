@@ -20,3 +20,10 @@
 
 **Notes:**
 - Initial code changes were applied to add `slug` support for three projects and update routes/components to use slug fallback + redirects. Run the dev server and verify pages for `project-1`, `project-2`, `project-3` (both legacy and slug URLs) to confirm.
+- Added behavior: categories with exactly one project now perform a server-side redirect (301) from `/work/{category}` to `/work/{category}/{project-slug-or-id}`. Category tiles on `/work` will link directly to the project page when there is only a single project to avoid an extra redirect round-trip.
+
+**Manual test checklist (quick verification):**
+- [ ] Visit `/work/blueprint` → should 301 to `/work/blueprint/{slug}`.
+- [ ] Click the Blueprint tile on `/work` → should land on the project page directly (no flicker or intermediate redirect when tile href is updated).
+- [ ] Visit a multi-project category (e.g., `/work/making`) → should render the category listing.
+- [ ] Confirm project pages still use canonical URLs and meta tags as expected.
