@@ -39,7 +39,8 @@ import type { Project } from "../data/projects";
             </div>
           </div>
         </a>
-      ))
+        )
+      })
     }
   </div>
 </div>
@@ -53,7 +54,7 @@ import type { Project } from "../data/projects";
     // Convert vertical wheel scroll to horizontal scroll
     container.addEventListener(
       "wheel",
-      (e: WheelEvent) => {
+      (e) => {
         if (isScrolling) return;
 
         // Only intercept vertical scroll
@@ -64,7 +65,7 @@ import type { Project } from "../data/projects";
         }
 
         isScrolling = true;
-        container!.scrollBy({
+        container.scrollBy({
           left: e.deltaY,
           behavior: "smooth",
         });
