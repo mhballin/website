@@ -1,0 +1,25 @@
+---
+import { projects } from "../../data/projects";
+
+// Catch-all route for old /projects/* URLs
+// Redirects to new /work/{category}/{slug-or-id} structure
+export function getStaticPaths() {
+  return projects.flatMap((project) => {
+    const canonical = project.slug ?? project.id;
+    const ids = project.slug ? [canonical, project.id] : [canonical];
+    return ids.map((projectId) => ({
+      params: { slug: projectId },
+      props: { project },
+    }));
+  });
+}
+
+interface Props {
+  project: (typeof projects)[0];
+}
+
+const { project } = Astro.props;
+const canonical = project.slug ?? project.id;
+
+// Redirect to the new URL structure: /work/{category}/{slug-or-id}
+return Astro.redirect(`/work/${project.category}/${canonical}`, 301);

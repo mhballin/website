@@ -47,6 +47,10 @@ const images = project.imageCount
     })
   : [];
 
+
+
+const isPhotographyLayout = project.autoLayout === true;
+
 const categoryLabels: Record<ProjectCategory, string> = {
   blueprint: "Blueprint",
   making: "Making",
@@ -69,7 +73,7 @@ const categoryLabels: Record<ProjectCategory, string> = {
   />
 
   <!-- Title & Metadata -->
-  <div class="max-w-3xl mx-auto mb-16">
+  <div class={`max-w-3xl mx-auto ${isPhotographyLayout ? 'mb-8' : 'mb-16'}`}>
     <h1 class="text-5xl font-bold mb-6 leading-tight">{project.title}</h1>
 
     <div class="flex flex-wrap gap-4 mb-8 text-sm text-gray-600">
@@ -83,19 +87,21 @@ const categoryLabels: Record<ProjectCategory, string> = {
       </div>
     </div>
 
-    <p class="text-xl leading-relaxed text-gray-700">
-      {project.overview || project.description}
-    </p>
+    {!isPhotographyLayout && (
+      <p class="text-xl leading-relaxed text-gray-700">
+        {project.overview || project.description}
+      </p>
+    )}
   </div>
 
   <!-- Hero Image -->
   <div class="w-full mb-16">
     <div class="max-w-5xl mx-auto">
-      <div class="w-full aspect-[21/9] overflow-hidden bg-gray-100 rounded-xl">
+      <div class={`w-full ${isPhotographyLayout ? 'aspect-[16/9]' : 'aspect-[21/9]'} overflow-hidden bg-gray-100 rounded-xl`}>
         <Image
           src={project.heroImage}
           width={1600}
-          height={686}
+          height={isPhotographyLayout ? 900 : 686}
           format="webp"
           alt={project.title}
           class="w-full h-full object-cover"
@@ -107,7 +113,7 @@ const categoryLabels: Record<ProjectCategory, string> = {
 
   <!-- Main Content Paragraph -->
   {
-    project.content && (
+    project.content && !isPhotographyLayout && (
       <div class="max-w-4xl mx-auto mb-16">
         <p class="text-lg leading-relaxed text-gray-700">{project.content}</p>
       </div>
@@ -117,32 +123,48 @@ const categoryLabels: Record<ProjectCategory, string> = {
   <!-- All Images Gallery -->
   {
     images.length > 0 && (
-      <div class="max-w-4xl mx-auto mb-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {images.map((image, index) => {
-            const isFullWidth = project.fullWidthImages?.includes(index);
-            return (
-              <div class={isFullWidth ? "md:col-span-2" : ""}>
-                <div class="w-full overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
-                  <img
-                    src={image}
-                    alt={`${project.title} - Image ${index + 1}`}
-                    class="project-gallery-image w-full h-full object-cover"
-                    data-images={images.join(",")}
-                    data-index={index}
-                  />
+      <div class="max-w-5xl mx-auto mb-16">
+        {project.autoLayout ? (
+          // CSS Columns layout for photography galleries
+          <div class="photo-gallery">
+            {images.map((image, index) => (
+              <img
+                src={image}
+                alt={`${project.title} - Image ${index + 1}`}
+                class="project-gallery-image"
+                data-images={images.join(",")}
+                data-index={index}
+              />
+            ))}
+          </div>
+        ) : (
+          // Traditional grid layout
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {images.map((image, index) => {
+              const isFullWidth = project.fullWidthImages?.includes(index);
+              return (
+                <div class={isFullWidth ? "md:col-span-2" : ""}>
+                  <div class="w-full overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                    <img
+                      src={image}
+                      alt={`${project.title} - Image ${index + 1}`}
+                      class="project-gallery-image w-full h-full object-cover"
+                      data-images={images.join(",")}
+                      data-index={index}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     )
   }
 
   <!-- Closing Section -->
   {
-    (project.closingText || (project.impact && project.impact.length > 0)) && (
+    !isPhotographyLayout && (project.closingText || (project.impact && project.impact.length > 0)) && (
       <div class="max-w-4xl mx-auto mb-16">
         <div class="bg-base-200 rounded-2xl p-8">
           {project.impactTitle !== false && (

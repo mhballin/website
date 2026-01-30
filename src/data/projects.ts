@@ -1,5 +1,10 @@
 export type ProjectCategory = "blueprint" | "making" | "creative";
 
+export interface ImageDimension {
+  width: number;
+  height: number;
+}
+
 export interface Project {
   id: string;
   slug?: string;
@@ -9,6 +14,11 @@ export interface Project {
   category: ProjectCategory;
   heroImage: string;
   imageCount?: number;  // Number of additional images (project_y_1.webp, project_y_2.webp, etc.)
+  
+  // Layout options
+  fullWidthImages?: number[];  // Indices of images to display full-width (rest in 2-column)
+  autoLayout?: boolean;  // Enable intelligent image layout based on aspect ratios
+  imageDimensions?: ImageDimension[];  // Image dimensions for justified layout [{ width, height }, ...]
   
   // Optional storytelling fields
   overview?: string;
@@ -24,7 +34,6 @@ export interface Project {
   repoUrl?: string;
   process?: string[]; // Key process steps (research → wireframes → prototype → implementation)
   deliverables?: string[]; // e.g., Figma files, prototype, deployed site
-  fullWidthImages?: number[];  // Indices of images to display full-width (rest in 2-column)
 } 
 
 export const projects: Project[] = [
@@ -146,6 +155,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-4",
+    slug: "cast-resin-vent-plug",
     title: "Cast Resin Vent Plug",
     description: `
       Surfboards and paddleboards need pressure equalization to prevent delamination 
@@ -184,6 +194,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-5",
+    slug: "pickleball-paddle",
     title: "Pickleball Paddle",
     description: `
       Designed and built reusable mold systems for rapid product manufacturing. 
@@ -221,6 +232,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-6",
+    slug: "surfboard-building-with-eps-and-epoxy",
     title: "Surfboard Building with EPS and Epoxy",
     description: `
       Engineered and prototyped custom surfboards using EPS foam cores 
@@ -270,6 +282,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-7",
+    slug: "casio-watch-whoop-fitting",
     title: "Casio Watch Whoop Fitting",
     description: `
       Designed and 3D-printed a custom fitting adapter that allows a Casio watch 
@@ -306,6 +319,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-8",
+    slug: "website-design",
     title: "Website Design",
     description: `
       Designed an interactive portfolio site featuring generative animations and lightweight, accessible interactions.
@@ -344,6 +358,7 @@ export const projects: Project[] = [
   },
   {
     id: "project-9",
+    slug: "photography",
     title: "Photography",
     description: `
       Designed custom typeface pairings and visual branding systems for 
@@ -353,7 +368,24 @@ export const projects: Project[] = [
     category: "creative",
     heroImage: "/projects/project-9/hero_9.webp",
     imageCount: 14,
-    year: "2025",
+    year: "2018- Present",
+    autoLayout: true,
+    imageDimensions: [
+      { width: 1600, height: 1200 }, // landscape
+      { width: 900, height: 1200 },  // portrait
+      { width: 1000, height: 800 },  // landscape
+      { width: 800, height: 1200 },  // portrait
+      { width: 1400, height: 1000 }, // landscape
+      { width: 900, height: 1350 },  // portrait
+      { width: 1200, height: 900 },  // landscape
+      { width: 950, height: 1425 },  // portrait
+      { width: 1500, height: 1000 }, // landscape
+      { width: 850, height: 1280 },  // portrait
+      { width: 1100, height: 950 },  // landscape
+      { width: 900, height: 1200 },  // portrait
+      { width: 1300, height: 1000 }, // landscape
+      { width: 950, height: 1400 },  // portrait
+    ],
     overview: `
       Strong typography is the backbone of any brand. This project involved 
       researching font pairing theory and creating versatile design systems 
@@ -375,10 +407,10 @@ export const projects: Project[] = [
       "Design guidelines and component libraries",
       "Tested across digital and print applications"
     ],
-    fullWidthImages: [0, 3],
   },
   {
     id: "project-10",
+    slug: "photography-books",
     title: "Photography Books",
     description: `
       Captured and curated a portfolio of lifestyle and product photography, 
