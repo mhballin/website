@@ -200,7 +200,7 @@ export const projects: Project[] = [
       Designed and built reusable mold systems for rapid product manufacturing. 
       Reduced tooling costs and improved production consistency.
     `.trim(),
-    featured: false,
+    featured: true,
     category: "making",
     heroImage: "/projects/project-5/hero_5.webp",
     imageCount: 7,
@@ -369,7 +369,7 @@ export const projects: Project[] = [
     imageCount: 14,
     year: "2018- Present",
     autoLayout: true,
-    // imageDimensions will be auto-detected at build time from actual image files
+
     overview: `
       I have been taking photos for as long as I can remember, starting with a 
       simple point-and-shoot film camera my in highschool. Over the years, 

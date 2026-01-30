@@ -11,9 +11,7 @@ import type { Project } from "../data/projects";
 
 <div class="highlights-carousel">
   <div
-    id="carousel-container"
-    class="flex gap-4 py-3 overflow-x-auto snap-x snap-mandatory scroll-smooth"
-    style="margin-left: calc(var(--prose-margin, 0) * -1); padding-left: var(--prose-margin, 0); width: 100vw; max-width: 100%;"
+    class="grid grid-cols-3 gap-4 py-3"
   >
     {
       projects.map((project) => {
@@ -21,7 +19,7 @@ import type { Project } from "../data/projects";
         return (
           <a
             href={`/work/${project.category}/${idOrSlug}`}
-            class="flex-shrink-0 w-80 h-80 min-w-80 min-h-80 snap-start rounded-lg overflow-hidden group cursor-pointer"
+            class="w-full aspect-square rounded-lg overflow-hidden group cursor-pointer"
           >
           <div class="relative w-full h-full">
             <Image
@@ -44,54 +42,3 @@ import type { Project } from "../data/projects";
     }
   </div>
 </div>
-
-<script>
-  const container = document.getElementById("carousel-container");
-
-  if (container) {
-    let isScrolling = false;
-
-    // Convert vertical wheel scroll to horizontal scroll
-    container.addEventListener(
-      "wheel",
-      (e) => {
-        if (isScrolling) return;
-
-        // Only intercept vertical scroll
-        if (e.deltaX !== 0) {
-          isScrolling = true;
-          setTimeout(() => (isScrolling = false), 50);
-          return;
-        }
-
-        isScrolling = true;
-        container.scrollBy({
-          left: e.deltaY,
-          behavior: "smooth",
-        });
-        e.preventDefault();
-        setTimeout(() => (isScrolling = false), 50);
-      },
-      { passive: false }
-    );
-  }
-</script>
-
-<style>
-  .highlights-carousel ::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .highlights-carousel ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .highlights-carousel ::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 3px;
-  }
-
-  .highlights-carousel ::-webkit-scrollbar-thumb:hover {
-    background: #999;
-  }
-</style>
