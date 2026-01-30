@@ -1,6 +1,5 @@
 ---
 import { SITE_AUTHOR } from "../config";
-import HeaderContactMenu from "./HeaderContactMenu.astro";
 export interface Props {
   title?: string;
 }
@@ -19,9 +18,6 @@ const { title } = Astro.props;
     </div>
     <div class="navbar-center">
       <a class="btn btn-ghost normal-case text-xl" href="/">{SITE_AUTHOR}</a>
-    </div>
-    <div class="navbar-end">
-      <HeaderContactMenu />
     </div>
   </div>
 </div>

@@ -361,8 +361,7 @@ export const projects: Project[] = [
     slug: "photography",
     title: "Photography",
     description: `
-      Designed custom typeface pairings and visual branding systems for 
-      startup concepts, focusing on cohesive design language and modular components.
+      Selection of my photography over the years
     `.trim(),
     featured: false,
     category: "creative",
@@ -370,42 +369,32 @@ export const projects: Project[] = [
     imageCount: 14,
     year: "2018- Present",
     autoLayout: true,
-    imageDimensions: [
-      { width: 1600, height: 1200 }, // landscape
-      { width: 900, height: 1200 },  // portrait
-      { width: 1000, height: 800 },  // landscape
-      { width: 800, height: 1200 },  // portrait
-      { width: 1400, height: 1000 }, // landscape
-      { width: 900, height: 1350 },  // portrait
-      { width: 1200, height: 900 },  // landscape
-      { width: 950, height: 1425 },  // portrait
-      { width: 1500, height: 1000 }, // landscape
-      { width: 850, height: 1280 },  // portrait
-      { width: 1100, height: 950 },  // landscape
-      { width: 900, height: 1200 },  // portrait
-      { width: 1300, height: 1000 }, // landscape
-      { width: 950, height: 1400 },  // portrait
-    ],
+    // imageDimensions will be auto-detected at build time from actual image files
     overview: `
-      Strong typography is the backbone of any brand. This project involved 
-      researching font pairing theory and creating versatile design systems 
-      that could scale across different mediums—web, print, and environmental design.
+      I have been taking photos for as long as I can remember, starting with a 
+      simple point-and-shoot film camera my in highschool. Over the years, 
+      I've experimented with different styles and techniques, from landscape and 
+      portrait photography to street and abstract compositions.
     `.trim(),
     content: `
-      I explored how different typeface weights, sizes, and color combinations 
-      could convey brand personality. Each iteration was tested across real-world 
-      applications to ensure both aesthetic appeal and functional readability.
+      My approach to photography is all about capturing the moment and telling a story. 
+      Whether it's a candid shot of a friend or a carefully composed landscape, 
+      I strive to create images that evoke emotion and spark curiosity. 
+      I pay close attention to lighting, composition, and color to create 
+      visually striking photographs that stand out.
     `.trim(),
     closingText: `
-      The resulting brand systems proved effective at creating instant recognition 
-      while remaining flexible enough to adapt to different contexts. This project 
-      reinforced that great design doesn't have to be complex—it has to be intentional.
+      Photography has taught me to see the world differently, to appreciate
+      the beauty in everyday moments, and to be patient and observant. 
+      These skills have not only improved my photography but have also 
+      influenced my design work, helping me create more thoughtful and 
+      impactful visual experiences.
     `.trim(),
     impactTitle: "Deliverables",
     impact: [
-      "3 complete brand identity systems",
-      "Design guidelines and component libraries",
-      "Tested across digital and print applications"
+      "Captured diverse photographic styles and subjects",
+      "Developed strong eye for composition and lighting",
+      "Enhanced storytelling through visual imagery"
     ],
   },
   {

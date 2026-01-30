@@ -1,12 +1,16 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { projects, type ProjectCategory } from "../../../data/projects";
+import { enrichProjectsWithImageDimensions } from "../../../lib/enrichProjects.mjs";
 import { Image } from "astro:assets";
 import ImageModal from "../../../components/ImageModal.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 
-export function getStaticPaths() {
-  return projects.flatMap((project) =>
+const enrichedProjects = await enrichProjectsWithImageDimensions(projects);
+
+export async function getStaticPaths() {
+  const enrichedProjects = await enrichProjectsWithImageDimensions(projects);
+  return enrichedProjects.flatMap((project) =>
     [project.category as ProjectCategory].flatMap((category) => {
       const canonical = project.slug ?? project.id;
       const ids = project.slug ? [canonical, project.id] : [canonical];
