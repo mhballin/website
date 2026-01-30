@@ -20,5 +20,6 @@ pnpm-debug.log*
 
 # Astro
 .astro/
-public/projects/project-8/.BridgeSort
-public/projects/project-2/.BridgeSort
+
+# .BridgeSort files
+**/.BridgeSort

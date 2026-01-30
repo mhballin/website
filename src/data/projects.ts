@@ -399,38 +399,98 @@ export const projects: Project[] = [
   },
   {
     id: "project-10",
-    slug: "photography-books",
-    title: "Photography Books",
+    slug: "down-the-kennebec",
+    title: "Down the Kennebec - Photo Book",
     description: `
-      Captured and curated a portfolio of lifestyle and product photography, 
-      focusing on compelling visual narratives that tell deeper stories.
+      A photographic journey along the Kennebec River, exploring its landscape and character.
     `.trim(),
     featured: false,
     category: "creative",
     heroImage: "/projects/project-10/hero_10.webp",
-    imageCount: 6,
-    year: "2025",
+    imageCount: 23,
+    autoLayout: true,
+    year: "2019",
     overview: `
-      Photography taught me that the best images are those that make viewers 
-      feel something. Through deliberate composition, lighting, and post-processing, 
-      I aimed to transform ordinary moments into powerful visual statements.
+      Following the Kennebec River, this collection documents the landscape, 
+      ecology, and spirit of this iconic waterway. From its powerful currents 
+      to serene moments, each image captures a different facet of the river's story.
     `.trim(),
-    content: `
-      This collection spans lifestyle shots, product photography, and environmental 
-      portraits. Each image went through careful curation and editing to ensure 
-      consistency in tone, color grading, and overall aesthetic.
+  },
+  {
+    id: "project-11",
+    slug: "how-did-i-get-here-alone",
+    title: "How did I Get here Alone - Photo Book",
+    description: `
+      A photography book my senior year of college, my roommates and coping with loneliness
     `.trim(),
-    closingText: `
-      Photography has become my way of seeing the world differently. It's taught me 
-      patience, attention to detail, and the importance of light in storytelling. 
-      These skills directly translate to all my other design work.
+    featured: false,
+    category: "creative",
+    heroImage: "/projects/project-11/hero_11.webp",
+    imageCount: 24,
+    autoLayout: true,
+    year: "2021",
+    overview: `
+      This book is an exploration of loneliness and coping during my senior 
+      year of college. Through a series of photographs, I document how my 
+      roommates and I navigated relationships during a time of our lives 
+      that felt fleeting.
     `.trim(),
-    impactTitle: false,
-    impact: [
-      "Built portfolio of 100+ curated images",
-      "Developed consistent visual style and color grading",
-      "Used photography to enhance product documentation"
-    ],
-    fullWidthImages: [0, 2, 5],
+  },
+  {
+    id: "project-12",
+    slug: "small-point",
+    title: "Small Point - Zine",
+    description: `
+      A focused photography project capturing the essence and character of Small Point.
+    `.trim(),
+    featured: false,
+    category: "creative",
+    heroImage: "/projects/project-12/hero_12.webp",
+    imageCount: 12,
+    autoLayout: true,
+    year: "2020",
+    overview: `
+      Small Point is a place of quiet beauty and hidden moments. This collection 
+      captures the character of this coastal location through careful observation 
+      and thoughtful composition, revealing the details that make it special.
+    `.trim(),
+  },
+  {
+    id: "project-13",
+    slug: "when-stop-signs-dont-exist",
+    title: "When Stop Signs Don't Exist - Photo Book",
+    description: `
+      An ode to surfing at dawn and my relationship with the ocean and my family.
+    `.trim(),
+    featured: false,
+    category: "creative",
+    heroImage: "/projects/project-13/hero_13.webp",
+    imageCount: 20,
+    autoLayout: true,
+    year: "2022",
+    overview: `
+      This photo book is an ode to surfing at dawn and my relationship with the ocean 
+      and my family. Through a series of intimate photographs, I explore the 
+      quiet moments before the world wakes up, capturing the beauty and solitude 
+      of early morning surf sessions.
+    `.trim(),
+  },
+  {
+    id: "project-14",
+    slug: "barbados",
+    title: "Barbados - Photo Book",
+    description: `
+      Exploring the vibrant culture and stunning landscapes of Barbados through photography.
+    `.trim(),
+    featured: false,
+    category: "creative",
+    heroImage: "/projects/project-14/hero_14.webp",
+    imageCount: 33,
+    autoLayout: true,
+    year: "2020",
+    overview: `
+      This book I shot right before covid in Barbados, landing with a 
+      camera and a surfboard. I documented my travels.
+    `.trim(),
   },
 ];
