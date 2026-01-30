@@ -230,7 +230,7 @@ export const projects: Project[] = [
     featured: false,
     category: "making",
     heroImage: "/projects/project-6/hero_6.webp",
-    imageCount: 5,
+    imageCount: 8,
     year: "2019 - Present",
     overview: `
       I got into board building while home from college, slightly bored and
@@ -278,7 +278,7 @@ export const projects: Project[] = [
     featured: false,
     category: "making",
     heroImage: "/projects/project-7/hero_7.webp",
-    imageCount: 4,
+    imageCount: 10,
     year: "2026",
     overview: `
       Designed and 3D-printed a custom-fitting adapter that allows a Casio watch 
@@ -352,7 +352,7 @@ export const projects: Project[] = [
     featured: false,
     category: "creative",
     heroImage: "/projects/project-9/hero_9.webp",
-    imageCount: 5,
+    imageCount: 14,
     year: "2025",
     overview: `
       Strong typography is the backbone of any brand. This project involved 
