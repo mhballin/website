@@ -92,20 +92,23 @@ export const projects: Project[] = [
     imageCount: 11,
     year: "2025 - Present",
     overview: `
-      After seeing my older brother's new apartment, I noticed he had everything 
-      but a nice nightlight. I figured I should make him one. Simple elegant, 
-      and only on when someone walks by 
+      After visiting my older brother's new apartment, I noticed 
+      he lacked a good nightlight. I decided to make one for him. 
+      As an avid surfer, I wanted something that would complement 
+      the aesthetic of his space and be highly functional.
     `.trim(),
     content: `
       After a quick brainstorm, we came up with an original idea: 
       a simple bathroom light shaped like a surfboard. Something 
-      simple and clean, that would first be functional while also looking good. 
+      simple and clean, that would first be functional but still look good. 
     `.trim(),
     closingText: `
       Once I printed the first prototype, I realized the light was too bright
        and would also reveal any internal cavities if present. After working 
        in Fusion 360 for the first few prototypes, I realized it would be a 
        lot easier in Rhino /Grasshopper, where I could make quicker tweaks between prototypes. 
+       I ended up with a final design that I'm happy with, 
+       and my brother loves using it every night.
     `.trim(),
     impactTitle: false,
     impact: [
@@ -184,7 +187,7 @@ export const projects: Project[] = [
     closingText: `
       The optimized manufacturing process significantly reduced waste and improved visual 
       consistency (allowing for color matching). The vent plugs are now a standard component 
-      across our product line.
+      across our product line and also used by other board builders in the area.
     `.trim(),
     impact: [
       "Reduced material waste ",
@@ -197,8 +200,9 @@ export const projects: Project[] = [
     slug: "pickleball-paddle",
     title: "Pickleball Paddle",
     description: `
-      Designed and built reusable mold systems for rapid product manufacturing. 
-      Reduced tooling costs and improved production consistency.
+      Designed and prototyped a custom pickleball paddle using a combination of 
+      fiberglassing techniques and 3D printing, resulting in a lightweight, 
+      durable, and high-performance paddle tailored to specific play styles.
     `.trim(),
     featured: true,
     category: "making",
@@ -214,7 +218,7 @@ export const projects: Project[] = [
     content: `
       Most handmade pickleball paddle I found online were made of wood or were 
       fully 3D printed. The wooden ones are heavy, and the 3D printed ones are 
-      loud and heavy. Seeing that paddle on the market were made of sandwich 
+      loud, heavy, and weak. Seeing that paddles on the market were made of sandwich 
       panels with a honeycomb lattice structure, I figured I could combine my fiberglassing 
       skills with 3D printing and make a great paddle. 
     `.trim(),
@@ -322,7 +326,7 @@ export const projects: Project[] = [
     slug: "website-design",
     title: "Website Design",
     description: `
-      Designed an interactive portfolio site featuring generative animations and lightweight, accessible interactions.
+      A collection of websites I've designed and implemented over the years.
     `.trim(),
     featured: false,
     category: "creative",
@@ -339,9 +343,10 @@ export const projects: Project[] = [
       been coding websites from scratch, writing in Astro, CSS, and HTML. 
     `.trim(),
     content: `
-      Each piece in the series follows a simple set of rules that lead to complex, unpredictable outcomes. For the website,
-      I focused on responsive layouts, animation performance (Lottie + optimized canvases), and accessible controls. Assets are lazy-loaded,
-      and critical CSS is inlined to improve first paint. I used a small component library and documented design tokens for reuse.
+      My approach to web design is centered around simplicity and user experience. 
+      I believe that a website should be easy to navigate, visually appealing, 
+      and provide value to the user. I focus on clean layouts, intuitive navigation, 
+      and responsive design to ensure that the site looks great on all devices. 
     `.trim(),
     closingText: `
       Designing websites has taught me the importance of performance optimization,
