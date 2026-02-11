@@ -5,7 +5,7 @@ export const categories: ProjectCategory[] = ["blueprint", "making", "creative"]
 export const categoryInfo: Record<ProjectCategory, { name: string; description: string }> = {
   blueprint: {
     name: "Blueprint",
-    description: "Startup and professional projects involving product development and innovation.",
+    description: "",
   },
   making: {
     name: "Making",

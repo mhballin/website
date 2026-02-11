@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectGrid from "../components/ProjectGrid.astro";
 import { categories, categoryInfo, projects } from "../data/projects";
@@ -8,20 +9,93 @@ const categorySections = categories.map((category) => ({
   info: categoryInfo[category],
   projects: projects.filter((project) => project.category === category),
 }));
+
+const blueprintProjects = projects.filter((project) => project.category === "blueprint");
+const featuredBlueprint = blueprintProjects.find((project) => project.featured)
+  ?? blueprintProjects[0];
+
+const featuredBlueprintHref = featuredBlueprint
+  ? `/work/${featuredBlueprint.category}/${featuredBlueprint.slug ?? featuredBlueprint.id}`
+  : "#";
 ---
 
 <BaseLayout title="Projects & Work" sideBarActiveItemID="work">
   <div class="pb-12">
-    <div class="text-3xl w-full font-bold">Projects & Work</div>
-    <p class="text-lg text-gray-600 mt-4">
+    <p class="text-sm uppercase tracking-[0.25em] text-gray-500">Selected work</p>
+    <div class="mt-3 text-4xl w-full font-bold md:text-5xl">Projects & Work</div>
+    <p class="text-lg text-gray-600 mt-4 max-w-2xl">
       I have always been someone who loves to create things. As a child, I was constantly building,
       tinkering, and experimenting. This passion for making has only grown stronger over the years,
       leading me to explore a variety of creative outlets. Below are some of my favorite projects.
     </p>
   </div>
 
+  {featuredBlueprint && (
+    <section class="pb-16">
+      <div class="pb-6">
+        <div class="text-3xl w-full font-bold">Blueprint</div>
+        <div class="text-lg text-gray-600 mt-2">{categoryInfo.blueprint.description}</div>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <a
+          href={featuredBlueprintHref}
+          class="group relative overflow-hidden rounded-2xl bg-base-200"
+        >
+          <Image
+            src={featuredBlueprint.heroImage}
+            width={1200}
+            height={800}
+            format="webp"
+            alt={featuredBlueprint.title}
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div class="absolute bottom-0 left-0 p-6 text-white">
+            <h2 class="text-2xl font-bold md:text-3xl">{featuredBlueprint.title}</h2>
+          </div>
+        </a>
+
+        <div class="flex flex-col justify-between gap-6 rounded-2xl bg-base-200 p-6">
+          <div class="space-y-3">
+            <h3 class="text-2xl font-semibold">{featuredBlueprint.title}</h3>
+            <p class="text-gray-600">
+              {featuredBlueprint.overview ?? featuredBlueprint.description}
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3 text-sm text-gray-500">
+            {featuredBlueprint.year && (
+              <span class="rounded-full bg-base-100 px-3 py-1">{featuredBlueprint.year}</span>
+            )}
+            {featuredBlueprint.role && (
+              <span class="rounded-full bg-base-100 px-3 py-1">{featuredBlueprint.role}</span>
+            )}
+            {featuredBlueprint.timeline && (
+              <span class="rounded-full bg-base-100 px-3 py-1">
+                {featuredBlueprint.timeline}
+              </span>
+            )}
+          </div>
+
+          {featuredBlueprint.impact && featuredBlueprint.impact.length > 0 && (
+            <ul class="space-y-2 text-sm text-gray-600">
+              {featuredBlueprint.impact.slice(0, 3).map((item) => (
+                <li>- {item}</li>
+              ))}
+            </ul>
+          )}
+
+          <div>
+            <a href={featuredBlueprintHref} class="btn btn-primary">View project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
   <div class="flex flex-col gap-16">
-    {categorySections.map((section) => (
+    {categorySections.filter((section) => section.category !== "blueprint").map((section) => (
       <section id={section.category} class="scroll-mt-24">
         <div class="pb-6">
           <div class="text-3xl w-full font-bold">{section.info.name}</div>
