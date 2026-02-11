@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { type ProjectCategory, projects } from "../data/projects";
+import { categoryInfo, type ProjectCategory, projects } from "../data/projects";
 import ImageModal from "./ImageModal.astro";
 import Breadcrumb from "./Breadcrumb.astro";
 
@@ -26,11 +26,7 @@ const images = project.imageCount
 
 const isPhotographyLayout = project.autoLayout === true;
 
-const categoryLabels: Record<ProjectCategory, string> = {
-  blueprint: "Blueprint",
-  making: "Making",
-  creative: "Creative",
-};
+const categoryLabel = categoryInfo[category]?.name ?? category;
 ---
 
 {
@@ -38,7 +34,7 @@ const categoryLabels: Record<ProjectCategory, string> = {
     <Breadcrumb
       items={[
         { href: "/work", label: "Work" },
-        { href: `/work/${category}`, label: categoryLabels[category] },
+        { href: `/work#${category}`, label: categoryLabel },
         { label: project.title }
       ]}
     />
@@ -54,8 +50,8 @@ const categoryLabels: Record<ProjectCategory, string> = {
     {project.role && <div><span class="font-semibold">Role:</span> {project.role}</div>}
     <div>
       <span class="font-semibold">Category:</span>
-      <a href={`/work/${category}`} class="text-primary hover:underline ml-1">
-        {categoryLabels[category]}
+      <a href={`/work#${category}`} class="text-primary hover:underline ml-1">
+        {categoryLabel}
       </a>
     </div>
   </div>
@@ -177,8 +173,8 @@ const categoryLabels: Record<ProjectCategory, string> = {
 
 <!-- Navigation to other projects in category -->
 <div class="max-w-4xl mx-auto mt-20 pt-8 border-t border-gray-200">
-  <a href={`/work/${category}`} class="btn btn-outline">
-    ← View All {categoryLabels[category]} Projects
+  <a href={`/work#${category}`} class="btn btn-outline">
+    ← View All {categoryLabel} Projects
   </a>
 </div>
 

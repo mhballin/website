@@ -1,15 +1,7 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectGrid from "../../components/ProjectGrid.astro";
-import ProjectDetail from "../../components/ProjectDetail.astro";
-import { projects, type ProjectCategory } from "../../data/projects";
-import { enrichProjectsWithImageDimensions } from "../../lib/enrichProjects.mjs";
-import Breadcrumb from "../../components/Breadcrumb.astro";
-
-const enrichedProjects = await enrichProjectsWithImageDimensions(projects);
+import { categories, type ProjectCategory } from "../../data/projects";
 
 export function getStaticPaths() {
-  const categories: ProjectCategory[] = ["blueprint", "making", "creative"];
   return categories.map((category) => ({
     params: { category },
     props: { category },
@@ -21,53 +13,5 @@ interface Props {
 }
 
 const { category } = Astro.props;
-const categoryProjects = enrichedProjects.filter((p) => p.category === category);
-const singleProject = categoryProjects.length === 1 ? categoryProjects[0] : null;
 
-const categoryLabels: Record<ProjectCategory, { name: string; description: string }> = {
-  blueprint: {
-    name: "Blueprint",
-    description: "Startup & professional projects involving product development and innovation.",
-  },
-  making: {
-    name: "Making",
-    description: "Personal builds, prototypes, and experimental projects exploring new materials and techniques.",
-  },
-  creative: {
-    name: "Creative",
-    description: "Design and visual work including photography, web design, and artistic projects.",
-  },
-};
-
-const categoryInfo = categoryLabels[category];
----
-
-<BaseLayout title={`Work - ${categoryInfo.name}`} sideBarActiveItemID="work">
-  {singleProject ? (
-    <>
-      <Breadcrumb
-        items={[
-          { href: "/work", label: "Work" },
-          { label: categoryInfo.name }
-        ]}
-      />
-      <ProjectDetail project={singleProject} category={category} showBreadcrumb={false} />
-    </>
-  ) : (
-    <>
-      <Breadcrumb
-        items={[
-          { href: "/work", label: "Work" },
-          { label: categoryInfo.name }
-        ]}
-      />
-
-      <div class="pb-8">
-        <div class="text-3xl w-full font-bold mb-2">{categoryInfo.name}</div>
-        <div class="text-lg text-gray-600 mb-5">{categoryInfo.description}</div>
-      </div>
-
-      <ProjectGrid projects={categoryProjects} category={category} />
-    </>
-  )}
-</BaseLayout>
+return Astro.redirect(`/work#${category}`, 301);

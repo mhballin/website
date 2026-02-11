@@ -1,5 +1,22 @@
 export type ProjectCategory = "blueprint" | "making" | "creative";
 
+export const categories: ProjectCategory[] = ["blueprint", "making", "creative"];
+
+export const categoryInfo: Record<ProjectCategory, { name: string; description: string }> = {
+  blueprint: {
+    name: "Blueprint",
+    description: "Startup and professional projects involving product development and innovation.",
+  },
+  making: {
+    name: "Making",
+    description: "Personal builds, prototypes, and experimental projects exploring new materials and techniques.",
+  },
+  creative: {
+    name: "Creative",
+    description: "Design and visual work including photography, web design, and artistic projects.",
+  },
+};
+
 export interface ImageDimension {
   width: number;
   height: number;
